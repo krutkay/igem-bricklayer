@@ -1,4 +1,4 @@
-igem-bricklayer
+iGEM Bricklayer
 ===============
 
 Layin ma bricks!
