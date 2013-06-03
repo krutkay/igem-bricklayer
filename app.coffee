@@ -23,7 +23,7 @@ app.configure 'development', () ->
     app.use express.errorHandler()
 
 # route GET requests to the proper place
-app.get '/', routes.index
+routes.initRoutes app
 
 # start listening
 port = app.get 'port'
