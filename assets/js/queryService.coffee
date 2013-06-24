@@ -3,11 +3,16 @@
 # This is because making a cross-domain request from the client side throws an error.. but seems to work
 # from the node server.
 
-search = (doSearch) ->
+igem = window.igem || {}
+
+igem.search = (doSearch) ->
+    console.log "Doing search!"
     $.ajax
-        type: "POST"
+        type: "GET"
         url: "/api/search"
         data:
             doSearch: doSearch
+        success: (data) ->
+            console.log "Seach came back! here's the data:"
+            console.log data
 
-window.search = search

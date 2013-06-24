@@ -1,10 +1,14 @@
 extends layout
 
+block append javascripts
+    != js('igemMain')
+    != js('queryService')
+
 block content
     h1= title
     p= text
+    form#search-form
+        input#search(type="submit", value="Search")
 
 
-block append javascripts
-    != js('queryService')
 
