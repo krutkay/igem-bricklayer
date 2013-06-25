@@ -10,7 +10,7 @@ Example:
 This url will do a text search for "gfp"
 http://parts.igem.org/cgi/partsdb/search.cgi?searchfor1=gfp;searchfor=Search
 
-<STRING> is the terms you want to search for (Don't put the )
+<STRING> is the terms you want to search for (Don't put the angled brackets)
 
 Text Search:
 nameTextInput = "searchfor1"
