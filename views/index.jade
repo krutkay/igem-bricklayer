@@ -1,6 +1,22 @@
 extends layout
 
+mixin searchForm(id, title)
+    p.title(id="#{id}-title") #{title}
+    form.search-form(id="#{id}-form")
+        input.search-input(id="#{id}-input", type="text")
+        input.search-button(id="#{id}-button", type="submit", value="Search")
+
+block append javascripts
+    != js('igemMain')
+    != js('queryService')
+
 block content
-    h1= title
-    p= text
+    h1 iGEM Bricklayer
+    p Layin' ma bricks
+    +searchForm("text-search", "Text Search")
+    +searchForm("thousand-search", "1000 Parts Search")
+    +searchForm("sub-search", "Subparts Search")
+    +searchForm("super-search", "Superparts Search")
+
+
 

@@ -1,7 +1,10 @@
 doctype 5
 html
     head
-        title= title
-        link(rel='stylesheet', href='/css/style.css')
+        title iGEM Bricklayer
+        != css('style')
     body
         block content
+
+    block javascripts
+        != js('lib/jquery-2.0.2.min')
