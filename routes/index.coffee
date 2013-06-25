@@ -2,12 +2,11 @@ brickSearch = require '../services/brickSearchService.coffee'
 
 # GET '/'
 index = (req, res) ->
-    response =
-        title: 'iGEM Bricklayer'
-        text: 'Layin ma bricks'
-    res.render 'index', response
+    res.render 'index'
 
 exports.initRoutes = (app) ->
-    # GETs
+    # page GETs
     app.get '/', index
+
+    # API GETs
     app.get '/api/search', brickSearch.search
