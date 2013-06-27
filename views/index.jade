@@ -1,7 +1,7 @@
 extends layout
 
 mixin searchForm(id, title)
-    p.title(id="#{id}-title") #{title}
+    p.search-title(id="#{id}-title") #{title}
     form.search-form(id="#{id}-form")
         input.search-input(id="#{id}-input", type="text")
         input.search-button(id="#{id}-button", type="submit", value="Search")
