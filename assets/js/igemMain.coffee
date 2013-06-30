@@ -8,12 +8,10 @@ searches =
     '#sub-search-form': '/api/search/subparts'
     '#super-search-form': '/api/search/superparts'
 
-eventClosure = (url) ->
-    (e) ->
-        e.preventDefault()
-        console.log url
-
 # Attach event handlers
 for searchId, url of searches
-    console.log url
-    $(searchId).submit eventClosure url
+    # this is a closure around url.
+    $(searchId).submit do (searchId, url) ->
+        (e) ->
+            e.preventDefault()
+            igem.search url, $(searchId + " :text").val()

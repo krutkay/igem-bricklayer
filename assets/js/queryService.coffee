@@ -5,14 +5,13 @@
 
 igem = window.igem || {}
 
-igem.search = (doSearch) ->
+igem.search = (url, searchTerms) ->
     console.log "Doing search!"
     $.ajax
         type: "GET"
-        url: "/api/search"
+        url: url
         data:
-            doSearch: doSearch
+            searchTerms: searchTerms
         success: (data) ->
             console.log "Seach came back! here's the data:"
             console.log data
-
