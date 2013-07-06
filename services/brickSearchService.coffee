@@ -100,7 +100,3 @@ attachQueryString = (url, params) ->
 
 # Exports
 exports.search = search
-exports.searchText = searchText
-exports.searchThousand = searchThousand
-exports.searchSubparts = searchSubparts
-exports.searchSuperparts = searchSuperparts
