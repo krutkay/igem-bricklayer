@@ -20,6 +20,10 @@
 		margin: 15px 0px;
 	}
 
+	p {
+		margin-bottom: 12px;
+	}
+
 	#header div {
 		padding: 8px;
 	}
@@ -85,6 +89,10 @@
 	.red {
 		color: #ee4444;
 	}
+
+	.hsep {
+		margin-right: 10px;
+	}
 	</style>
 
 	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
@@ -106,6 +114,17 @@
 		<div class="row">
 			<div class="column6">
 				<h1>Search results for "awesome"</h1>
+				<p>
+					<span class="hsep">4 results</span>
+					<span class="hsep">Sort by:
+						<select>
+							<option value="Relevance">Relevance</option>
+							<option value="Length">Length</option>
+							<option value="Rating">Rating</option>
+							<option value="Stars">Stars</option>
+						</select>
+					</span>
+				</p>
 			</div>
 			<div class="column6 lastcol align-right">
 				<a href="#">My Cart (6)</a>
