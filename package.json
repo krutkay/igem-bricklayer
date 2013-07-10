@@ -10,6 +10,7 @@
     "jade": "*",
     "coffee-script" : "1.6.x",
     "connect-assets": "2.4.*",
-    "request": "2.21.0"
+    "request": "2.21.0",
+    "cheerio": "0.12.0"
   }
 }
