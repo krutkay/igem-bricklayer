@@ -4,7 +4,8 @@ cheerio = require 'cheerio'
 exports.parseListFromPage =
 parseListFromPage = (html) ->
     $ = cheerio.load html
-    console.log html
-    console.log $('a')
-    []
+    parts = []
+    $('A[href^="view.cgi"]').each (index, element) ->
+        parts.push $(element).text()
+    parts
 
