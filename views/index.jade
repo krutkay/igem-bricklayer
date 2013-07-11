@@ -1,22 +1,30 @@
 extends layout
 
-mixin searchForm(id, title)
-    p.title(id="#{id}-title") #{title}
-    form.search-form(id="#{id}-form")
-        input.search-input(id="#{id}-input", type="text")
-        input.search-button(id="#{id}-button", type="submit", value="Search")
+//- Defines a reusable search form.
+mixin searchForm(title, id, action)
+	form(id="#{id}", action="#{action}")
+		input(type="text", placeholder="#{title}")
+		input(type="submit", value="Go")
 
+//- Appends page-specific JS
 block append javascripts
-    != js('igemMain')
-    != js('queryService')
+	!= js('igemMain')
+	!= js('queryService')
 
 block content
-    h1 iGEM Bricklayer
-    p Layin' ma bricks
-    +searchForm("text-search", "Text Search")
-    +searchForm("thousand-search", "1000 Parts Search")
-    +searchForm("sub-search", "Subparts Search")
-    +searchForm("super-search", "Superparts Search")
-
-
-
+	.grid
+		.row
+			.column6 &nbsp;
+			.column6.lastcol.align-right
+				a(href="#") My Cart (6)
+				&nbsp;
+				|User McIGemmer
+		.row.mTop100#contentMain
+			.column6.align-right
+				img(src="http://placehold.it/350x500")
+			.column6.lastcol.mTop100#searchForms
+				+searchForm("Text Search", "form-textsearch", "#")
+				+searchForm("1000 Parts Search", "form-thousandsearch", "#")
+				+searchForm("Subparts Search", "form-subpartsearch", "#")
+				+searchForm("Superparts Search", "form-superpartsearch", "#")
+	include include/footer

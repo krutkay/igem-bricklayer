@@ -1,8 +1,23 @@
 body {
-    padding: 50px;
-    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	font-family: "Open Sans", Helvetica, Arial, sans-serif;
+	font-size: 16px;
 }
 
-a {
-    color: #00B7FF;
+#footer {
+	color: #aaa;
+	font-size: 12px;
+	margin-top: 15px;
+	text-align: center;
 }
+
+#searchForms form { margin-bottom: 20px; }
+
+/* Shortcut Classes */
+.left { float: left; }
+.right { float: right; }
+.clear { clear: both; height: 0px; overflow: hidden; }
+.align-left { text-align: left; }
+.align-center { text-align: center; }
+.align-right { text-align: right; }
+
+.mTop100 { margin-top: 100px; }
