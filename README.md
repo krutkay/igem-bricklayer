@@ -9,7 +9,7 @@ The commands below are meant to be run in a terminal; which should be easy enoug
 The [Windows installer of Git](http://git-scm.com/downloads) comes with a terminal called git-bash. This should be enough to run these commands though you'll have to do some configuring so that the terminal is able to find the `node` program.
 
 ##### Alternatives:
-* Install [Cygwin](http://www.cygwin.com/), another terminal like environment for window.
+* Install [Cygwin](http://www.cygwin.com/), another terminal like environment for windows.
 * Install [Ubuntu](http://www.ubuntu.com/download), a linux distribution. Linux distributions are very programmer friendly and access to the terminal should be straightforward. You can choose to install it alongside you current operating system. 
 * Get a [mac](http://www.apple.com/ca/macbook-air/).
 
