@@ -13,5 +13,13 @@ igem.search = (url, searchTerms) ->
         data:
             searchTerms: searchTerms
         success: (data) ->
+            # The data here is an array of biobrick names
             console.log "Seach came back! here's the data:"
-            console.log data
+            displayBricks data
+        error: (error) ->
+            console.log error
+
+# Step 1: Start rendering of a table
+# Step 2: Fetch full information for each brick, one by one
+displayBricks = (data) ->
+    console.log data

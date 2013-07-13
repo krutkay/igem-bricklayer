@@ -41,12 +41,7 @@ search = (req, res) ->
         # The response from partsregistry is the full HTML page.
         # Parse the page and get a list of parts.
         parts = parser.parseListFromPage body
-        # Then, use partsregistry's API to get XML data for each part, one by one
-        for part in parts
-            request searchConfig.baseApiUrl + part, (e, r, b) ->
-                if e then res.send 404, e
-                # stream the responses (send data as it comes in, dont wait for it all to come)
-        res.send 200, body
+        res.send 200, parts
 
     if path is routes.text
         searchText searchTerms, done
