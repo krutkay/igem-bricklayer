@@ -3,14 +3,14 @@ Searching on parts.igem.org
 
 This specifies how to hijack the searches on the partsregistry.
 
-Base URL ([visit](http://parts.igem.org/cgi/partsdb/search.cgi)):  
+Base URL ([visit](http://parts.igem.org/cgi/partsdb/search.cgi)):
 `http://parts.igem.org/cgi/partsdb/search.cgi`
 
-Query String Format:  
+Query String Format:
 `http://parts.igem.org/cgi/partsdb/search.cgi?[nameTextInput]=[STRING];[nameSubmitButton]=Search`
 
 Example:
-This url will do a text search for "gfp"  
+This url will do a text search for "gfp"
 `http://parts.igem.org/cgi/partsdb/search.cgi?searchfor1=gfp;searchfor=Search`
 
 [STRING] is the terms you want to search for (Don't put the square brackets)
@@ -19,7 +19,7 @@ This url will do a text search for "gfp"
 
 #####Text Search:
 ```
-nameTextInput = "searchfor1"   
+nameTextInput = "searchfor1"
 nameSubmitButton = "searchfor"
 ```
 
@@ -40,3 +40,12 @@ nameSubmitButton = "search_subparts"
 nameTextInput = "super_part_list"
 nameSubmitButton = "search_superparts"
 ```
+
+## Parts Registry API
+You can get XML data for a part with:
+
+`http://parts.igem.org/cgi/xml/part.cgi?part=[Part_Name]`
+
+For example:
+
+`http://parts.igem.org/cgi/xml/part.cgi?part=BBa_J70533`
