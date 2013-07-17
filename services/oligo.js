@@ -56,6 +56,12 @@ function validateConcentrationOfdNTP(concentrationToValidate, concentrationOfMg)
 // melting temperature: ANALYZE Function
 
 function meltingTemperatureAnalyze(sequenceToAnalyze, concOligo){
+	
+	var enthalpy = 0;
+	var deltaH = enthalpy;
+	var entropy = 0;
+	var deltaS = entropy;
+	
 	var R = 1.987;
 	var temperature = ((enthalpy) / (entropy + (R * Math.log(concOligo)) ));
 	
@@ -155,4 +161,39 @@ function calcuationOfOligoConcentration(concentrationOfStrand1, concentrationOfS
 	}
 	
 	return concentrationOfOligo;
+}
+
+function calculateMismatchMeltingTemperature(concentrationOfStrand1, concentrationOfStrand2){
+	
+	var entropy = 0;
+	var enthalpy = 0;
+	var R = 1.987;
+	
+	if(concentrationOfStrand1>= concentrationOfStrand2){
+		var temperature = enthalpy / (entropy + R * Math.log(concentrationOfStrand1 - (concentrationOfStrand1 / 2) ));
+		return temperature;
+	}
+	
+	else{
+		throw new Error("error in calculateMismatchMeltingTemperature: concentration of strand 1 should be higher than (or equal to) concentration of strand 2");
+	}
+	
+}
+
+function hybridizationPercentBound(concentrationOfStrand1, concentrationOfStrand2, hybridizationTemperature){
+	var theta = 0;
+	
+	var enthalpy = 0;
+	var deltaH = enthalpy;
+	var entropy = 0;
+	var deltaS = entropy;
+	
+	var R = 1.987;
+	
+	var Ka = Math.pow(Math.exp((-(deltaH - T * deltaS))/R*T)
+	
+	theta = 1 - ( ((Ka(concentrationOfStrand2 - concentrationOfStrand1) - 1)/(2 * Ka * concentrationOfStrand2)) + ((Math.sqrt(Ka*Ka * Math.pow(concentrationOfStrand1 - concentrationOfStrand2, 2) + 2 * Ka * Math.pow(concentrationOfStrand1 - concentrationOfStrand2, 2) + 1)) / (2 * Ka * concentrationOfStrand2)));
+	
+	return theta;
+	
 }
