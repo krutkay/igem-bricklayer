@@ -3,10 +3,10 @@ request = require 'request'
 parser = require './parserService'
 
 exports.routes = routes =
-    text: "/api/search/text"
-    thousand: "/api/search/thousand"
-    subparts: "/api/search/subparts"
-    superparts: "/api/search/superparts"
+    text: "/api/v1/search/text"
+    thousand: "/api/v1/search/thousand"
+    subparts: "/api/v1/search/subparts"
+    superparts: "/api/v1/search/superparts"
 
 searchConfig =
     baseSearchUrl: "http://parts.igem.org/cgi/partsdb/search.cgi?"

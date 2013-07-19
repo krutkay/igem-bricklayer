@@ -3,10 +3,10 @@ window.igem = {} || igem
 
 # a map of form ids to search URLS
 searches =
-    '#form-text-search': '/api/search/text'
-    '#form-thousand-search': '/api/search/thousand'
-    '#form-subpart-search': '/api/search/subparts'
-    '#form-superpart-search': '/api/search/superparts'
+    '#form-text-search': '/api/v1/search/text'
+    '#form-thousand-search': '/api/v1/search/thousand'
+    '#form-subpart-search': '/api/v1/search/subparts'
+    '#form-superpart-search': '/api/v1/search/superparts'
 
 # Attach event handlers
 for searchId, url of searches
