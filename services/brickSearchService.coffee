@@ -2,6 +2,7 @@
 request = require 'request'
 parser = require './parserService'
 
+### Search parts.igem.org ###
 exports.routes = routes =
     text: "/api/v1/search/text"
     thousand: "/api/v1/search/thousand"
@@ -58,7 +59,6 @@ searchText = (searchTerms, done) ->
         searchConfig.text.nameSubmitButton,
         searchTerms
         )
-    console.log url
     request url, done
 
 searchThousand = (searchTerms, done) ->
@@ -67,7 +67,6 @@ searchThousand = (searchTerms, done) ->
         searchConfig.thousand.nameSubmitButton,
         searchTerms
         )
-    console.log url
     request url, done
 
 searchSubparts = (searchTerms, done) ->
@@ -76,7 +75,6 @@ searchSubparts = (searchTerms, done) ->
         searchConfig.subparts.nameSubmitButton,
         searchTerms
         )
-    console.log url
     request url, done
 
 searchSuperparts = (searchTerms, done) ->
@@ -85,23 +83,16 @@ searchSuperparts = (searchTerms, done) ->
         searchConfig.superparts.nameSubmitButton,
         searchTerms
         )
-    console.log url
     request url, done
 
-# search = (req, res) ->
-#     doSearch = req.query.doSearch
-#     url = "http://igempartview.appspot.com/query/json?param=categories&value=/cds/membrane"
-#     request url, (error, response, body) ->
-#         data = JSON.parse body
-#         res.send 200, data
+### Get Individiual Parts ###
 
-# Builds a queryString from a params object, then returns url + queryString
-# TODO: Adds an unnecessary "&" to the end of the url. Get rid of it.
-attachQueryString = (url, params) ->
-    queryString = "?"
-    for paramKey, value of params
-        queryString += paramKey + "=" + value + "&"
-    url + queryString
+getPart = (req, res) ->
+    console.log searchConfig.baseApiUrl + req.params.part
+    request searchConfig.baseApiUrl + req.params.part, (error, response, body) ->
+        if error then res.send 404, error
+        res.send 200, body
 
 # Exports
 exports.search = search
+exports.getPart = getPart

@@ -5,6 +5,8 @@
 
 igem = window.igem || {}
 
+partUrl = 'api/v1/part/'
+
 igem.search = (url, searchTerms) ->
     console.log "Doing search!"
     $.ajax
@@ -21,5 +23,15 @@ igem.search = (url, searchTerms) ->
 
 # Step 1: Start rendering of a table
 # Step 2: Fetch full information for each brick, one by one
-displayBricks = (data) ->
-    console.log data
+displayBricks = (parts) ->
+    console.log parts
+    for part in parts
+        $.ajax
+            type: "GET"
+            url: partUrl + part
+            success: do (part) ->
+                (data) ->
+                    console.log "Data for part #{part}"
+                    console.log data
+            error: (error) ->
+                console.log error
