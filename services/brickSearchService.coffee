@@ -87,12 +87,12 @@ searchSuperparts = (searchTerms, done) ->
 
 ### Get Individiual Parts ###
 
-getPart = (req, res) ->
-    console.log searchConfig.baseApiUrl + req.params.part
-    request searchConfig.baseApiUrl + req.params.part, (error, response, body) ->
+getBrick = (req, res) ->
+    console.log searchConfig.baseApiUrl + req.params.brick
+    request searchConfig.baseApiUrl + req.params.brick, (error, response, body) ->
         if error then res.send 404, error
         res.send 200, body
 
 # Exports
 exports.search = search
-exports.getPart = getPart
+exports.getBrick = getBrick

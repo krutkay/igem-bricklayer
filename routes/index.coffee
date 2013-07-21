@@ -15,4 +15,4 @@ exports.initRoutes = (app) ->
     app.get brickSearch.routes.subparts, brickSearch.search
     app.get brickSearch.routes.superparts, brickSearch.search
 
-    app.get '/api/v1/part/:part', brickSearch.getPart
+    app.get '/api/v1/brick/:brick', brickSearch.getBrick
