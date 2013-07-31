@@ -5,14 +5,32 @@
 
 igem = window.igem || {}
 
-igem.search = (doSearch) ->
+brickUrl = 'api/v1/brick/'
+
+igem.search = (url, searchTerms) ->
     console.log "Doing search!"
     $.ajax
         type: "GET"
-        url: "/api/search"
+        url: url
         data:
-            doSearch: doSearch
+            searchTerms: searchTerms
         success: (data) ->
+            # The data here is an array of biobrick names
             console.log "Seach came back! here's the data:"
-            console.log data
+            displayBricks data
+        error: (error) ->
+            console.log error
 
+# Step 1: Start rendering of a table
+# Step 2: Fetch full information for each brick, one by one
+displayBricks = (bricks) ->
+    for brick in bricks
+        $.ajax
+            type: "GET"
+            url: brickUrl + brick
+            success: do (brick) ->
+                (data) ->
+                    console.log "Data for brick #{brick}"
+                    console.log data
+            error: (error) ->
+                console.log error
