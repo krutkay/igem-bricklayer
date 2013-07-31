@@ -70,7 +70,7 @@
     &.#{nth($shade, 1)} {
       background: lighten(nth($shade, 2), 20%);
       border: 1px solid nth($shade, 2);
-      color: darken(nth($shade, 2), 20%);
+      color: darken(nth($shade, 2), 45%);
       @if nth($shade, 1) == info {
         color: $default-color;
       }

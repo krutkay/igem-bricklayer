@@ -89,6 +89,12 @@
           color: darken(nth($shade, 2), 40%);
         }
       }
+      @if nth($shade, 1) == primary {
+        color: darken(nth($shade, 2), 40%);
+        a, input, button {
+          color: darken(nth($shade, 2), 40%);
+        }
+      }
     }
   }
 
