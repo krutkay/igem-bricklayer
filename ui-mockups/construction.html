@@ -6,7 +6,6 @@
 
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css' />
 	<link href="css/gumby/gumby.css" rel="stylesheet" />
-	<link rel="stylesheet" href="css/construction" />
 	<style>
 	.align-right { text-align: right; }
 	</style>
@@ -18,6 +17,15 @@
 			$("#cart, #part").sortable({
 				connectWith: ".sortable"
 			}).disableSelection();
+			$("#part").on("sortremove", function(e) {
+				var target = $(e.currentTarget);
+				if (target.find("div").length == 0) {
+					$("#part-message").show();
+				}
+			});
+			$("#part").on("sortreceive", function(e) {
+				$("#part-message").hide();
+			});
 		});
 	</script>
 </head>
@@ -63,7 +71,19 @@
 		</div>
 		<div id="parts" class="six columns">
 			<h2>part</h2>
-			<ul id="part" class="sortable" style="min-height: 200px; border: 1px solid #ddd;"></ul>
+			<ul id="part" class="sortable" style="min-height: 200px;">
+				<li id="part-message">
+					(drag parts from the cart here)
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<div class="six columns">
+			<div class="medium danger btn"><a href="#">Clear</a></div>
+		</div>
+		<div class="six columns">
+			<div class="medium warning btn"><a href="#">Save</a></div>
 		</div>
 	</div>
 </body>
