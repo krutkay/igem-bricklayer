@@ -5,70 +5,65 @@
 	<title>Bricklayer</title>
 
 	<link href='http://fonts.googleapis.com/css?family=PT+Serif|Open+Sans' rel='stylesheet' type='text/css' />
-	<link rel="stylesheet" href="css/reset.css" />
-	<link rel="stylesheet" href="css/forms.css" />
-	<style>
-	body {
-		font-family: "Open Sans", sans-serif;
-		font-size: 16px;
-	}
-
-	#contentMain {
-		margin-top: 100px;
-	}
-
-	#searchForms {
-		margin-top: 75px;
-	}
-	#searchForms form {
-		margin-bottom: 20px;
-	}
-
-	#footer {
-		color: #aaa;
-		font-size: 12px;
-		margin-top: 10px;
-		text-align: center;
-	}
-	
-	</style>
+	<link rel="stylesheet" href="css/gumby/gumby.css" />
 </head>
 <body>
-	<div class="grid">
-		<div class="row">
-			<div class="column6"></div>
-			<div class="column6 lastcol align-right">
-				<a href="#">My Cart (6)</a>
-				&nbsp;
-				Martin Hanzel
-			</div>
-		</div>
-		<div id="contentMain" class="row">
-			<div class="column6 align-right">
-				<img src="http://placehold.it/350x500" />
-			</div>
-			<div class="column6 lastcol" id="searchForms">
-				<form action="searchResults.html">
-					<input type="text" placeholder="Text search" />
-					<input type="submit" value="Go" />
-				</form>
-				<form action="searchResults.html">
-					<input type="text" placeholder="1000 parts search" />
-					<input type="submit" value="Go" />
-				</form>
-				<form action="searchResults.html">
-					<input type="text" placeholder="Subparts search" />
-					<input type="submit" value="Go" />
-				</form>
-				<form action="searchResults.html">
-					<input type="text" placeholder="Superparts search" />
-					<input type="submit" value="Go" />
-				</form>
-			</div>
+	<div class="row">
+		<div class="twelve columns text-right">
+			<a href="construction.html">My Cart (6)</a>
+			&nbsp;
+			Martin Hanzel
 		</div>
 	</div>
-	<div id="footer">
-		&copy; uOttawa iGEM 2013. This is freaking awesoooooome.
+
+	<div class="row">
+		<h1>bricklayer</h1>
+	</div>
+
+	<div class="row">
+		<div class="six columns text-right">
+			<img src="http://placehold.it/350x500" />
+		</div>
+		<div id="searchForms" class="six columns">
+			<form action="searchResults.html">
+				<div class="append field">
+					<input type="text" class="wide text input" placeholder="Text search" />
+					<div class="medium primary btn">
+						<input type="submit" value="Go" />
+					</div>
+				</div>
+			</form>
+			<form action="searchResults.html">
+				<div class="append field">
+					<input type="text" class="wide text input" placeholder="1000 parts search" />
+					<div class="medium primary btn">
+						<input type="submit" value="Go" />
+					</div>
+				</div>
+			</form>
+			<form action="searchResults.html">
+				<div class="append field">
+					<input type="text" class="wide text input" placeholder="Subparts search" />
+					<div class="medium primary btn">
+						<input type="submit" value="Go" />
+					</div>
+				</div>
+			</form>
+			<form action="searchResults.html">
+				<div class="append field">
+					<input type="text" class="wide text input" placeholder="Superparts search" />
+					<div class="medium primary btn">
+						<input type="submit" value="Go" />
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<div class="row">
+		<div id="footer" class="twelve columns text-center">
+			&copy; uOttawa iGEM 2013. This is freaking awesoooooome.
+		</div>
 	</div>
 </body>
 </html>

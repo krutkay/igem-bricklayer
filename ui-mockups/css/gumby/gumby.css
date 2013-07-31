@@ -7090,3 +7090,16 @@ table.rounded caption + tbody tr:first-child td,
 table.rounded > tbody:first-child tr:first-child td {
   border-top: 0;
 }
+
+/* line 8, ../../sass/gumby/_custom.scss */
+#searchForms {
+  padding-top: 100px;
+}
+
+/* line 12, ../../sass/gumby/_custom.scss */
+#footer {
+  color: #aaa;
+  font-size: 12px;
+  margin-top: 10px;
+  text-align: center;
+}
