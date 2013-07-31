@@ -5,11 +5,10 @@
 	<title>Results for 'awesome'</title>
 
 	<link href='http://fonts.googleapis.com/css?family=PT+Serif|Open+Sans' rel='stylesheet' type='text/css' />
-	<link rel="stylesheet" href="css/reset.css" />
-	<link rel="stylesheet" href="css/forms.css" />
+	<link rel="stylesheet" href="css/gumby/gumby.css" />
 
 	<style>
-	body {
+	/*body {
 		font-family: "Open Sans", sans-serif;
 		font-size: 16px;
 	}
@@ -92,7 +91,7 @@
 
 	.hsep {
 		margin-right: 10px;
-	}
+	}*/
 	</style>
 
 	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
@@ -100,153 +99,178 @@
 	$(function() {
 		$(".part-header").click(function(e) {
 			var target = $(e.currentTarget);
-			var extended = target.siblings(".part-extended");
-			if (extended.css("display") == "none")
+			var extended = target.parent().siblings(".part-extended");
+			var icon = target.find(".resultIcon");
+			if (extended.css("display") == "none") {
 				extended.slideDown(300);
-			else
+				icon.toggleClass("icon-right-open").toggleClass("icon-down-open");
+			}
+			else {
 				extended.slideUp(300);
+				icon.toggleClass("icon-right-open").toggleClass("icon-down-open");
+			}
 		});
 	});
 	</script>
 </head>
 <body>
-	<div class="grid">
-		<div class="row">
-			<div class="column6">
-				<h1>Search results for "awesome"</h1>
-				<p>
-					<span class="hsep">4 results</span>
-					<span class="hsep">Sort by:
-						<select>
-							<option value="Relevance">Relevance</option>
-							<option value="Length">Length</option>
-							<option value="Rating">Rating</option>
-							<option value="Stars">Stars</option>
-						</select>
-					</span>
-				</p>
-			</div>
-			<div class="column6 lastcol align-right">
-				<a href="#">My Cart (6)</a>
-				&nbsp;
-				Martin Hanzel
-			</div>
+	<div class="row">
+		<div class="twelve columns text-right">
+			<a href="construction.html">My Cart (6)</a>
+			&nbsp;
+			Martin Hanzel
 		</div>
-		<div class="row">
-			<div class="part">
-				<div class="part-header">
-					&nbsp;
-					<a href="#">BBa_K12345</a>
-					&nbsp;&nbsp;&nbsp;&nbsp;
-					1000 bp
-					&nbsp;&nbsp;&nbsp;&nbsp;
-					<span class="rfc-yes">10</span>
-					<span class="rfc-yes">12</span>
-					<span class="rfc-yes">21</span>
-					<span class="rfc-no">22</span>
-					<span class="rfc-no">25</span>
-					<span class="rfc-yes">1000</span>
-					<a class="button right">add</a>
-				</div>
-				<div class="part-extended">
-					<div class="description">
-						This is an awesome part that generates awesomeness wherever it is placed. No genetic network may be awesome without this part.
-					</div>
-					<div class="remarks">
-						Submitted 2012-12-12<br />
-						<a href="#" class="red">Not available</a> -
-						<span class="green">Works</span> -
-						21 uses
-					</div>
-				</div>
-				<div class="clear"></div>
-			</div>
-			<div class="part">
-				<div class="part-header">
-					&nbsp;
-					<a href="#">BBa_K67890</a>
-					&nbsp;&nbsp;&nbsp;&nbsp;
-					1000 bp
-					&nbsp;&nbsp;&nbsp;&nbsp;
-					<span class="rfc-yes">10</span>
-					<span class="rfc-yes">12</span>
-					<span class="rfc-yes">21</span>
-					<span class="rfc-no">22</span>
-					<span class="rfc-no">25</span>
-					<span class="rfc-yes">1000</span>
-					<a class="button right">add</a>
-				</div>
-				<div class="part-extended">
-					<div class="description">
-						This is an awesome part that generates awesomeness wherever it is placed. No genetic network may be awesome without this part.
-					</div>
-					<div class="remarks">
-						Submitted 2012-12-12<br />
-						<a href="#" class="red">Not available</a> -
-						<span class="green">Works</span> -
-						21 uses
-					</div>
-				</div>
-				<div class="clear"></div>
-			</div>
-			<div class="part">
-				<div class="part-header">
-					&nbsp;
-					<a href="#">BBa_K42</a>
-					&nbsp;&nbsp;&nbsp;&nbsp;
-					1000 bp
-					&nbsp;&nbsp;&nbsp;&nbsp;
-					<span class="rfc-yes">10</span>
-					<span class="rfc-yes">12</span>
-					<span class="rfc-yes">21</span>
-					<span class="rfc-no">22</span>
-					<span class="rfc-no">25</span>
-					<span class="rfc-yes">1000</span>
-					<a class="button right">add</a>
-				</div>
-				<div class="part-extended">
-					<div class="description">
-						This is an awesome part that generates awesomeness wherever it is placed. No genetic network may be awesome without this part.
-					</div>
-					<div class="remarks">
-						Submitted 2012-12-12<br />
-						<a href="#" class="red">Not available</a> -
-						<span class="green">Works</span> -
-						21 uses
-					</div>
-				</div>
-				<div class="clear"></div>
-			</div>
-			<div class="part">
-				<div class="part-header">
-					&nbsp;
-					<a href="#">BBa_K1337</a>
-					&nbsp;&nbsp;&nbsp;&nbsp;
-					1000 bp
-					&nbsp;&nbsp;&nbsp;&nbsp;
-					<span class="rfc-yes">10</span>
-					<span class="rfc-yes">12</span>
-					<span class="rfc-yes">21</span>
-					<span class="rfc-no">22</span>
-					<span class="rfc-no">25</span>
-					<span class="rfc-yes">1000</span>
-					<a class="button right">add</a>
-				</div>
-				<div class="part-extended">
-					<div class="description">
-						This is an awesome part that generates awesomeness wherever it is placed. No genetic network may be awesome without this part.
-					</div>
-					<div class="remarks">
-						Submitted 2012-12-12<br />
-						<a href="#" class="red">Not available</a> -
-						<span class="green">Works</span> -
-						21 uses
-					</div>
-				</div>
-				<div class="clear"></div>
+	</div>
+
+	<div class="row">
+		<h2>search: 'awesome'</h2>
+	</div>
+
+	<!-- Search info bar -->
+	<div class="row">
+		<div class="six columns">
+			4 results, page 1 of 1
+		</div>
+		<div class="six columns text-right">
+			Sort by
+			<div class="field picker">
+				<select>
+					<option value="Relevance">Relevance</option>
+					<option value="Length">Length</option>
+					<option value="Rating">Rating</option>
+					<option value="Stars">Stars</option>
+				</select>
 			</div>
 		</div>
 	</div>
+
+	<!-- Search results -->
+	<div class="row">
+		<div class="searchResult">
+			<div> <!-- Part header -->
+				<a href="#" class="text-large hspace part-header">
+					<i class="icon-right-open resultIcon"></i>
+					K12345
+				</a>
+				<span class="hspace">1000 bp</span>
+				<span class="hspace">
+					<span class="rfc-yes">10</span>
+					<span class="rfc-yes">12</span>
+					<span class="rfc-yes">21</span>
+					<span class="rfc-no">22</span>
+					<span class="rfc-no">25</span>
+					<span class="rfc-yes">1000</span>
+				</span>
+				<a href="#" class="text-large hspace">add</a>
+			</div>
+			<div class="part-extended">
+				<p class="description">
+					This is an awesome part that generates awesomeness wherever it is placed. No genetic network may be awesome without this part.
+				</p>
+				<p class="remarks">
+					Submitted 2012-12-12<br />
+					<a href="#" class="red">Not available</a> -
+					<span class="green">Works</span> -
+					21 uses
+				</p>
+				<div class="part-separator"></div>
+			</div>
+		</div>
+
+		<div class="searchResult">
+			<div> <!-- Part header -->
+				<a href="#" class="text-large hspace part-header">
+					<i class="icon-right-open resultIcon"></i>
+					K12345
+				</a>
+				<span class="hspace">1000 bp</span>
+				<span class="hspace">
+					<span class="rfc-yes">10</span>
+					<span class="rfc-yes">12</span>
+					<span class="rfc-yes">21</span>
+					<span class="rfc-no">22</span>
+					<span class="rfc-no">25</span>
+					<span class="rfc-yes">1000</span>
+				</span>
+				<a href="#" class="text-large hspace">add</a>
+			</div>
+			<div class="part-extended">
+				<p class="description">
+					This is an awesome part that generates awesomeness wherever it is placed. No genetic network may be awesome without this part.
+				</p>
+				<p class="remarks">
+					Submitted 2012-12-12<br />
+					<a href="#" class="red">Not available</a> -
+					<span class="green">Works</span> -
+					21 uses
+				</p>
+				<div class="part-separator"></div>
+			</div>
+		</div>
+
+		<div class="searchResult">
+			<div> <!-- Part header -->
+				<a href="#" class="text-large hspace part-header">
+					<i class="icon-right-open resultIcon"></i>
+					K12345
+				</a>
+				<span class="hspace">1000 bp</span>
+				<span class="hspace">
+					<span class="rfc-yes">10</span>
+					<span class="rfc-yes">12</span>
+					<span class="rfc-yes">21</span>
+					<span class="rfc-no">22</span>
+					<span class="rfc-no">25</span>
+					<span class="rfc-yes">1000</span>
+				</span>
+				<a href="#" class="text-large hspace">add</a>
+			</div>
+			<div class="part-extended">
+				<p class="description">
+					This is an awesome part that generates awesomeness wherever it is placed. No genetic network may be awesome without this part.
+				</p>
+				<p class="remarks">
+					Submitted 2012-12-12<br />
+					<a href="#" class="red">Not available</a> -
+					<span class="green">Works</span> -
+					21 uses
+				</p>
+				<div class="part-separator"></div>
+			</div>
+		</div>
+
+		<div class="searchResult">
+			<div> <!-- Part header -->
+				<a href="#" class="text-large hspace part-header">
+					<i class="icon-right-open resultIcon"></i>
+					K12345
+				</a>
+				<span class="hspace">1000 bp</span>
+				<span class="hspace">
+					<span class="rfc-yes">10</span>
+					<span class="rfc-yes">12</span>
+					<span class="rfc-yes">21</span>
+					<span class="rfc-no">22</span>
+					<span class="rfc-no">25</span>
+					<span class="rfc-yes">1000</span>
+				</span>
+				<a href="#" class="text-large hspace">add</a>
+			</div>
+			<div class="part-extended">
+				<p class="description">
+					This is an awesome part that generates awesomeness wherever it is placed. No genetic network may be awesome without this part.
+				</p>
+				<p class="remarks">
+					Submitted 2012-12-12<br />
+					<a href="#" class="red">Not available</a> -
+					<span class="green">Works</span> -
+					21 uses
+				</p>
+				<div class="part-separator"></div>
+			</div>
+		</div>
+	</div>
+	
 	<div id="footer">
 		&copy; uOttawa iGEM 2013. This is freaking awesoooooome.
 	</div>

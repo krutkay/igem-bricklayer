@@ -1,5 +1,38 @@
 // Your custom SCSS should be written here...
 
+.text-large {
+	font-size: 1.5em;
+}
+
+.hspace {
+	margin-right: 15px;
+}
+
+.rfc-yes {
+	background-color: #aaffaa;
+	border: 1px solid #44ee44;
+	padding: 0px 2px;
+}
+
+.rfc-no {
+	background-color: #ffaaaa;
+	border: 1px solid #ee4444;
+	padding: 0px 2px;
+}
+
+.searchResult {
+	margin-bottom: 18px;
+}
+
+.part-extended {
+	display: none;
+}
+
+.part-separator {
+	border-bottom: 1px solid $body-link-color;
+	width: 100%;
+}
+
 #cart div, #part div {
 	@extend .alert;
 	@extend .primary;
