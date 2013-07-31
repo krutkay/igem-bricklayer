@@ -1,0 +1,14 @@
+// green, red, dark, yellow
+$part-types:
+	rbs #58c026,
+	terminator #ca3838,
+	coding #4a4d50,
+	promoter #e6a82f;
+
+.label {
+	@each $type in $part-types {
+		&.#{nth($type, 1)} {
+			background: nth($type, 2);
+		}
+	}
+}

@@ -7091,52 +7091,69 @@ table.rounded > tbody:first-child tr:first-child td {
   border-top: 0;
 }
 
-/* line 3, ../../sass/gumby/_custom.scss */
+/* line 10, ../../sass/gumby/custom/_annotation.scss */
+.label.rbs {
+  background: #58c026;
+}
+/* line 10, ../../sass/gumby/custom/_annotation.scss */
+.label.terminator {
+  background: #ca3838;
+}
+/* line 10, ../../sass/gumby/custom/_annotation.scss */
+.label.coding {
+  background: #4a4d50;
+}
+/* line 10, ../../sass/gumby/custom/_annotation.scss */
+.label.promoter {
+  background: #e6a82f;
+}
+
+/* line 4, ../../sass/gumby/_custom.scss */
 .text-large {
   font-size: 1.5em;
 }
 
-/* line 7, ../../sass/gumby/_custom.scss */
+/* line 8, ../../sass/gumby/_custom.scss */
 .hspace {
   margin-right: 15px;
 }
 
-/* line 11, ../../sass/gumby/_custom.scss */
+/* line 12, ../../sass/gumby/_custom.scss */
 .rfc-yes {
   background-color: #aaffaa;
   border: 1px solid #44ee44;
   padding: 0px 2px;
 }
 
-/* line 17, ../../sass/gumby/_custom.scss */
+/* line 18, ../../sass/gumby/_custom.scss */
 .rfc-no {
   background-color: #ffaaaa;
   border: 1px solid #ee4444;
   padding: 0px 2px;
 }
 
-/* line 23, ../../sass/gumby/_custom.scss */
+/* line 24, ../../sass/gumby/_custom.scss */
 .searchResult {
   margin-bottom: 18px;
 }
 
-/* line 27, ../../sass/gumby/_custom.scss */
+/* line 28, ../../sass/gumby/_custom.scss */
 .part-extended {
   display: none;
 }
 
-/* line 31, ../../sass/gumby/_custom.scss */
+/* line 32, ../../sass/gumby/_custom.scss */
 .part-separator {
   border-bottom: 1px solid #d04526;
   width: 100%;
 }
 
-/* line 41, ../../sass/gumby/_custom.scss */
+/* line 42, ../../sass/gumby/_custom.scss */
 #searchForms {
   padding-top: 100px;
 }
 
-/* line 45, ../../sass/gumby/_custom.scss */
+/* line 46, ../../sass/gumby/_custom.scss */
 #footer {
   color: #aaa;
   font-size: 12px;
