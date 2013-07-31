@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>bricklayer construction</title>
+
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css' />
+	<link href="css/gumby/gumby.css" rel="stylesheet" />
+	<link rel="stylesheet" href="css/construction" />
+	<style>
+	.align-right { text-align: right; }
+	</style>
+
+	<script src="js/jquery-1.9.1.js"></script>
+	<script src="js/jquery-ui-1.10.3.custom.min.js"></script>
+	<script>
+		$(function() {
+			$("#cart, #part").sortable({
+				connectWith: ".sortable"
+			}).disableSelection();
+		});
+	</script>
+</head>
+<body>
+	<div class="row">
+		<div class="twelve columns align-right">
+			<a href="#">My Cart (6)</a>
+			&nbsp;
+			Martin Hanzel
+		</div>
+	</div>
+
+	<!-- Sortable columns -->
+	<div class="row">
+		<div class="six columns">
+			<h2>cart</h2>
+			<ul id="cart" class="sortable">
+				<li><div>
+					J23100: constitutive promoter family member
+				</div></li>
+				<li><div>
+					K389005: Kanamycin resistance
+				</div></li>
+				<li><div>
+					E1010: **highly** engineered mutant of red fluorescent protein from Discosoma striata (coral)
+				</div></li>
+				<li><div>
+					B1004: Terminator (artificial, small, %T~=55)
+				</div></li>
+				<li><div >
+					J61100: Ribosome Binding Site Family Member
+				</div></li>
+				<li><div >
+					K190017: Copper Promoter (CueR regulated)
+				</div></li>
+				<li><div >
+					K389002: Mutated virG
+				</div></li>
+				<li><div>
+					K086018: modified Lutz-Bujard LacO promoter,with alternative sigma factor sigma24
+				</div></li>
+			</ul>
+		</div>
+		<div id="parts" class="six columns">
+			<h2>part</h2>
+			<ul id="part" class="sortable" style="min-height: 200px; border: 1px solid #ddd;"></ul>
+		</div>
+	</div>
+</body>
+</html>
