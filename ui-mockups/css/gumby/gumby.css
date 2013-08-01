@@ -7142,12 +7142,12 @@ table.rounded > tbody:first-child tr:first-child td {
 }
 /* line 24, ../../../../../.rvm/gems/ruby-2.0.0-p247/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
 #searchResultsTable thead a:hover {
-  color: #d04526;
+  color: #dc5b3e;
 }
 /* line 13, ../../sass/gumby/custom/_search.scss */
 #searchResultsTable .partExtended {
   display: none;
-  border-bottom: 1px solid #d04526 !important;
+  border-bottom: 1px solid #d04526;
 }
 
 /* line 6, ../../sass/gumby/_custom.scss */

@@ -6,12 +6,12 @@
 
 	thead a {
 		color: white;
-		@include link-colors(white, $body-link-color);
+		@include link-colors(white, lighten($body-link-color, 7%));
 	}
 
 	// Extended part information, hidden by default
 	.partExtended {
 		display: none;
-		border-bottom: 1px solid $body-link-color !important;
+		border-bottom: 1px solid $body-link-color;
 	}
 }
