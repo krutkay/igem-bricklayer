@@ -7091,74 +7091,66 @@ table.rounded > tbody:first-child tr:first-child td {
   border-top: 0;
 }
 
-/* line 10, ../../sass/gumby/custom/_annotation.scss */
-.label.rbs {
-  background: #58c026;
-}
-/* line 10, ../../sass/gumby/custom/_annotation.scss */
-.label.terminator {
-  background: #ca3838;
-}
-/* line 10, ../../sass/gumby/custom/_annotation.scss */
-.label.coding {
-  background: #4a4d50;
-}
-/* line 10, ../../sass/gumby/custom/_annotation.scss */
-.label.promoter {
-  background: #e6a82f;
-}
-
-/* line 4, ../../sass/gumby/_custom.scss */
-thead a {
-  color: white;
-}
-
-/* line 8, ../../sass/gumby/_custom.scss */
+/* line 2, ../../sass/gumby/custom/_annotation.scss */
 .text-large {
   font-size: 1.5em;
 }
 
-/* line 12, ../../sass/gumby/_custom.scss */
-.hspace {
-  margin-right: 15px;
-}
-
-/* line 16, ../../sass/gumby/_custom.scss */
+/* line 10, ../../sass/gumby/custom/_annotation.scss */
 .rfc-yes {
-  background-color: #aaffaa;
-  border: 1px solid #44ee44;
+  background-color: #cafbca;
+  border: 1px solid #33ee33;
   padding: 0px 2px;
 }
 
-/* line 22, ../../sass/gumby/_custom.scss */
+/* line 16, ../../sass/gumby/custom/_annotation.scss */
 .rfc-no {
-  background-color: #ffaaaa;
+  background-color: #fcdada;
   border: 1px solid #ee4444;
   padding: 0px 2px;
 }
 
-/* line 28, ../../sass/gumby/_custom.scss */
-.searchResult {
-  margin-bottom: 18px;
+/* line 32, ../../sass/gumby/custom/_annotation.scss */
+.label.rbs {
+  background: #58c026;
+}
+/* line 32, ../../sass/gumby/custom/_annotation.scss */
+.label.terminator {
+  background: #ca3838;
+}
+/* line 32, ../../sass/gumby/custom/_annotation.scss */
+.label.coding {
+  background: #4a4d50;
+}
+/* line 32, ../../sass/gumby/custom/_annotation.scss */
+.label.promoter {
+  background: #e6a82f;
 }
 
-/* line 32, ../../sass/gumby/_custom.scss */
-.partExtended {
+/* line 1, ../../sass/gumby/custom/_search.scss */
+#searchResultsTable {
+  margin: 0px;
+}
+/* line 3, ../../sass/gumby/custom/_search.scss */
+#searchResultsTable, #searchResultsTable tr, #searchResultsTable td {
+  border: 0;
+}
+/* line 7, ../../sass/gumby/custom/_search.scss */
+#searchResultsTable thead a {
+  color: white;
+  color: white;
+}
+/* line 24, ../../../../../.rvm/gems/ruby-2.0.0-p247/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+#searchResultsTable thead a:hover {
+  color: #d04526;
+}
+/* line 13, ../../sass/gumby/custom/_search.scss */
+#searchResultsTable .partExtended {
   display: none;
+  border-bottom: 1px solid #d04526 !important;
 }
 
-/* line 36, ../../sass/gumby/_custom.scss */
-.part-separator {
-  border-bottom: 1px solid #d04526;
-  width: 100%;
-}
-
-/* line 46, ../../sass/gumby/_custom.scss */
-#searchForms {
-  padding-top: 100px;
-}
-
-/* line 50, ../../sass/gumby/_custom.scss */
+/* line 6, ../../sass/gumby/_custom.scss */
 #footer {
   color: #aaa;
   font-size: 12px;
