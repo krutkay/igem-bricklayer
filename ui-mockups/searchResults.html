@@ -98,6 +98,7 @@
 	<script>
 	$(function() {
 		$(".part-header").click(function(e) {
+			e.preventDefault();
 			var target = $(e.currentTarget);
 			var part = target.parents("tr").data("part");
 			var extended = $("tr.partExtended." + part);
@@ -157,7 +158,7 @@
 				<td></td>
 			</thead>
 
-			<tr class="partHeader" data-part="K12345">
+			<tr data-part="K12345">
 				<td>
 					<a href="#" class="text-large part-header">
 						<i class="icon-right-open resultIcon"></i>
@@ -204,7 +205,7 @@
 					<div class="part-separator"></div></td>
 			</tr>
 
-			<tr class="partHeader" data-part="K23456">
+			<tr data-part="K23456">
 				<td>
 					<a href="#" class="text-large part-header">
 						<i class="icon-right-open resultIcon"></i>
@@ -251,7 +252,7 @@
 					<div class="part-separator"></div></td>
 			</tr>
 
-			<tr class="partHeader" data-part="K34567">
+			<tr data-part="K34567">
 				<td>
 					<a href="#" class="text-large part-header">
 						<i class="icon-right-open resultIcon"></i>
@@ -298,7 +299,7 @@
 					<div class="part-separator"></div></td>
 			</tr>
 
-			<tr class="partHeader" data-part="K45678">
+			<tr data-part="K45678">
 				<td>
 					<a href="#" class="text-large part-header">
 						<i class="icon-right-open resultIcon"></i>
