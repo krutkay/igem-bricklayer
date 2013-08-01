@@ -7109,51 +7109,56 @@ table.rounded > tbody:first-child tr:first-child td {
 }
 
 /* line 4, ../../sass/gumby/_custom.scss */
+thead a {
+  color: white;
+}
+
+/* line 8, ../../sass/gumby/_custom.scss */
 .text-large {
   font-size: 1.5em;
 }
 
-/* line 8, ../../sass/gumby/_custom.scss */
+/* line 12, ../../sass/gumby/_custom.scss */
 .hspace {
   margin-right: 15px;
 }
 
-/* line 12, ../../sass/gumby/_custom.scss */
+/* line 16, ../../sass/gumby/_custom.scss */
 .rfc-yes {
   background-color: #aaffaa;
   border: 1px solid #44ee44;
   padding: 0px 2px;
 }
 
-/* line 18, ../../sass/gumby/_custom.scss */
+/* line 22, ../../sass/gumby/_custom.scss */
 .rfc-no {
   background-color: #ffaaaa;
   border: 1px solid #ee4444;
   padding: 0px 2px;
 }
 
-/* line 24, ../../sass/gumby/_custom.scss */
+/* line 28, ../../sass/gumby/_custom.scss */
 .searchResult {
   margin-bottom: 18px;
 }
 
-/* line 28, ../../sass/gumby/_custom.scss */
+/* line 32, ../../sass/gumby/_custom.scss */
 .partExtended {
   display: none;
 }
 
-/* line 32, ../../sass/gumby/_custom.scss */
+/* line 36, ../../sass/gumby/_custom.scss */
 .part-separator {
   border-bottom: 1px solid #d04526;
   width: 100%;
 }
 
-/* line 42, ../../sass/gumby/_custom.scss */
+/* line 46, ../../sass/gumby/_custom.scss */
 #searchForms {
   padding-top: 100px;
 }
 
-/* line 46, ../../sass/gumby/_custom.scss */
+/* line 50, ../../sass/gumby/_custom.scss */
 #footer {
   color: #aaa;
   font-size: 12px;

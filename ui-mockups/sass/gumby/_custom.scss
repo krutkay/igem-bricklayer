@@ -1,6 +1,10 @@
 // Your custom SCSS should be written here...
 @import "custom/annotation";
 
+thead a {
+	color: white;
+}
+
 .text-large {
 	font-size: 1.5em;
 }
