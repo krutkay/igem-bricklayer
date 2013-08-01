@@ -103,7 +103,7 @@ html * {
 /* line 9, ../../sass/gumby/_base.scss */
 body {
   background: white;
-  font-family: "Open Sans";
+  font-family: "Open Sans", Helvetica, Arial;
   font-weight: 400;
   color: #555555;
   position: relative;
@@ -126,11 +126,11 @@ html, body {
 
 /* line 28, ../../sass/gumby/_base.scss */
 .ie9 {
-  font-family: "Open Sans";
+  font-family: "Open Sans", Helvetica, Arial;
 }
 /* line 30, ../../sass/gumby/_base.scss */
 .ie9 * {
-  font-family: "Open Sans";
+  font-family: "Open Sans", Helvetica, Arial;
 }
 
 /* line 35, ../../sass/gumby/_base.scss */
@@ -193,7 +193,7 @@ html, body {
 
 /* line 2, ../../sass/gumby/_typography.scss */
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Open Sans";
+  font-family: "Open Sans", Helvetica, Arial;
   font-weight: 300;
   color: #444444;
   text-rendering: optimizeLegibility;
@@ -290,7 +290,7 @@ h6 {
   ======================================================*/
 /* line 58, ../../sass/gumby/_typography.scss */
 p {
-  font-family: "Open Sans";
+  font-family: "Open Sans", Helvetica, Arial;
   font-weight: 400;
   font-size: 16px;
   font-size: 1rem;
@@ -1837,7 +1837,7 @@ img {
   width: auto;
   background: #f2f2f2;
   -webkit-appearance: none;
-  font-family: "Open Sans";
+  font-family: "Open Sans", Helvetica, Arial;
   font-weight: 600;
   padding: 0 !important;
   text-align: center;
@@ -5927,7 +5927,7 @@ form fieldset legend {
   outline: none;
   resize: none;
   -webkit-appearance: none;
-  font-family: "Open Sans";
+  font-family: "Open Sans", Helvetica, Arial;
   font-weight: 300;
   font-size: 16px;
   font-size: 1rem;
@@ -6093,7 +6093,7 @@ form fieldset legend {
   padding: 0 10px 0 10px;
   background: #f2f2f2;
   border: 1px solid #d8d8d8;
-  font-family: "Open Sans";
+  font-family: "Open Sans", Helvetica, Arial;
   font-weight: 600;
   color: #555555;
   font-size: 16px;
@@ -6410,7 +6410,7 @@ form fieldset legend {
   -ms-border-radius: 4px;
   -o-border-radius: 4px;
   border-radius: 4px;
-  font-family: "Open Sans";
+  font-family: "Open Sans", Helvetica, Arial;
   font-weight: 600;
   height: auto;
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #f2f2f2));
@@ -6641,7 +6641,7 @@ form fieldset legend {
 /* line 60, ../../sass/gumby/ui/_labels.scss */
 .alert, #cart div, #part div {
   padding: 0 10px;
-  font-family: "Open Sans";
+  font-family: "Open Sans", Helvetica, Arial;
   font-weight: 600;
   list-style-type: none;
   word-wrap: break-word;
@@ -6731,7 +6731,7 @@ form fieldset legend {
   padding: 0 16px;
   margin: 0;
   color: #555555;
-  font-family: "Open Sans";
+  font-family: "Open Sans", Helvetica, Arial;
   font-weight: 600;
   border: 1px solid #e5e5e5;
   border-width: 1px 1px 0 1px;
@@ -7138,7 +7138,7 @@ table.rounded > tbody:first-child tr:first-child td {
 }
 
 /* line 28, ../../sass/gumby/_custom.scss */
-.part-extended {
+.partExtended {
   display: none;
 }
 
