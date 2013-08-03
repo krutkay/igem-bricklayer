@@ -1,13 +1,10 @@
-doctype 5
-html
+!!! 5
+html(lang='en')
     head
-        title iGEM Bricklayer
-
+        meta(charset='UTF-8')
+        title Bricklayer
         link(href="http://fonts.googleapis.com/css?family=PT+Serif|Open+Sans", rel="stylesheet", type="text/css")
-        != css("reset")
-        != css("grid")
-        != css("forms")
-        != css('style')
+        link(rel="stylesheet", href="css/gumby/gumby.css")
     body
         block content
         include include/footer
