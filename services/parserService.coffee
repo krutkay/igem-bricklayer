@@ -8,4 +8,3 @@ parseListFromPage = (html) ->
     $('A[href^="view.cgi"]').each (index, element) ->
         parts.push $(element).text()
     parts
-

@@ -4,8 +4,26 @@
 # from the node server.
 
 igem = window.igem || {}
-
 brickUrl = 'api/v1/brick/'
+
+class BioBrick
+    constructor: (xml) ->
+        @xml = $($.parseXML xml)
+        @name          = @getContent "part_name"
+        @description   = @getContent "part_short_desc"
+        @type          = @getContent "part_type"
+        @releaseStatus = @getContent "release_status"
+        @partResults   = @getContent "part_results"
+        @partUrl       = @getContent "part_url"
+        @dateEntered   = @getContent "part_entered"
+        @author        = @getContent "part_author"
+        @sequence      = @getContent "seq_data"
+
+    getContent: (tagName) ->
+        @xml.find(tagName).contents()[0]?.data
+
+    getContents: (tagName) ->
+        content.data for content in @xml.find(tagName).contents()
 
 igem.search = (url, searchTerms) ->
     console.log "Doing search!"
@@ -16,21 +34,21 @@ igem.search = (url, searchTerms) ->
             searchTerms: searchTerms
         success: (data) ->
             # The data here is an array of biobrick names
-            console.log "Seach came back! here's the data:"
             displayBricks data
         error: (error) ->
             console.log error
 
 # Step 1: Start rendering of a table
 # Step 2: Fetch full information for each brick, one by one
-displayBricks = (bricks) ->
-    for brick in bricks
+displayBricks = (brickList) ->
+    bricks = []
+    for brick in brickList
         $.ajax
             type: "GET"
             url: brickUrl + brick
             success: do (brick) ->
                 (data) ->
-                    console.log "Data for brick #{brick}"
-                    console.log data
+                    # console.log "Data recieved for brick #{brick}"
+                    bricks.push new BioBrick data
             error: (error) ->
                 console.log error
