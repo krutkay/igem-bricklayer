@@ -1,5 +1,6 @@
-# Declare a bricklayer object for scripts to attach things to.
-window.bricklayer = {} || bricklayer
+# Declare a Bricklayer object for scripts to attach things to.
+root = this
+Bricklayer = root.Bricklayer = {}
 
 # a map of form ids to search URLS
 searches =
@@ -14,4 +15,4 @@ for searchId, url of searches
     $(searchId).submit do (searchId, url) ->
         (e) ->
             e.preventDefault()
-            bricklayer.search url, $(searchId + " :text").val()
+            Bricklayer.search url, $(searchId + " :text").val()

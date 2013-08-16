@@ -3,7 +3,6 @@
 # This is because making a cross-domain request from the client side throws an error.. but seems to work
 # from the node server.
 
-bricklayer = window.bricklayer || {}
 brickUrl = 'api/v1/brick/'
 
 class BioBrick
@@ -25,7 +24,7 @@ class BioBrick
     getContents: (tagName) ->
         content.data for content in @xml.find(tagName).contents()
 
-bricklayer.search = (url, searchTerms) ->
+Bricklayer.search = (url, searchTerms) ->
     console.log "Doing search!"
     $.ajax
         type: "GET"
