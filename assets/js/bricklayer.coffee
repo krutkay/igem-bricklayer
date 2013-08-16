@@ -1,5 +1,5 @@
-# Declare an igem object for scripts to attach things to.
-window.igem = {} || igem
+# Declare a bricklayer object for scripts to attach things to.
+window.bricklayer = {} || bricklayer
 
 # a map of form ids to search URLS
 searches =
@@ -14,4 +14,4 @@ for searchId, url of searches
     $(searchId).submit do (searchId, url) ->
         (e) ->
             e.preventDefault()
-            igem.search url, $(searchId + " :text").val()
+            bricklayer.search url, $(searchId + " :text").val()

@@ -3,7 +3,7 @@
 # This is because making a cross-domain request from the client side throws an error.. but seems to work
 # from the node server.
 
-igem = window.igem || {}
+bricklayer = window.bricklayer || {}
 brickUrl = 'api/v1/brick/'
 
 class BioBrick
@@ -25,7 +25,7 @@ class BioBrick
     getContents: (tagName) ->
         content.data for content in @xml.find(tagName).contents()
 
-igem.search = (url, searchTerms) ->
+bricklayer.search = (url, searchTerms) ->
     console.log "Doing search!"
     $.ajax
         type: "GET"
@@ -50,5 +50,6 @@ displayBricks = (brickList) ->
                 (data) ->
                     # console.log "Data recieved for brick #{brick}"
                     bricks.push new BioBrick data
+                    console.log bricks
             error: (error) ->
                 console.log error
