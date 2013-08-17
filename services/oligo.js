@@ -57,13 +57,10 @@ function validateConcentrationOfdNTP(concentrationToValidate, concentrationOfMg)
 
 function meltingTemperatureAnalyze(sequenceToAnalyze, concOligo){
 	
-	var enthalpy = 0;
-	var deltaH = enthalpy;
-	var entropy = 0;
-	var deltaS = entropy;
+	var deltaH = 0;
+	var deltaS = 0;
 	
 	var R = 1.987;
-	var temperature = ((enthalpy) / (entropy + (R * Math.log(concOligo)) ));
 	
 	/* how do we calculate:
 	 * enthalpy;
@@ -72,20 +69,33 @@ function meltingTemperatureAnalyze(sequenceToAnalyze, concOligo){
 	 * ? not discussed in documentation...
 	*/
 	
+	for(var i=0; i<sequenceToAnalyze.length-1; i++) {
+	var nnValues = findValues(sequenceToAnalyze.substring(i,i+2));
+	deltaH+=nnValues[0];
+	deltaS+=nnValues[1];
+	}
+
+	var startingValues = initValues(sequence.charAt(0));
+	var endingValues = initValues(sequence.charAt(sequence.length-1));
+	deltaH = deltaH + startingValues[0] + endingValues[0];
+	deltaS = deltaS + startingValues[1] + endingValues[1];
+
+	var temperature = ((deltaH*1000) / (deltaS + (R * Math.log(concOligo / 2)) )) - 273.15;
+
 	return temperature;
 	
 }
 
-function meltingTemperatureSodiumCorrected(concentrationOfNa, sequenceToAnalyze){
+function meltingTemperatureSodiumCorrected(concOligo, concentrationOfNa, sequenceToAnalyze){
 	var fractionOfGCbp = 0;
 	var numberOfBasePairs = 0;
 	
-	var temperatureNa = 1/(meltingTemperatureSodiumCorrected(1, sequenceToAnalyze)) + ((4.29 * fractionOfGCbp - 3.95) * Math.log(concentrationOfNa) + 0.940 * (Math.log(concentrationOfNa))^2) * Math.pow(10, -5);
+	var temperatureNa = 1/(meltingTemperatureAnalyze(sequenceToAnalyze, concOligo)) + ((4.29 * fractionOfGCbp - 3.95) * Math.log(concentrationOfNa) + 0.940 * (Math.log(concentrationOfNa))^2) * Math.pow(10, -5);
 	
 	return (1/temperatureNa);
 }
 
-function meltingTemperatureMagnesiumCorrected(concentrationOfMg, concentrationOfNa, sequenceToAnalyze, engageWarpDriveCommander){
+function meltingTemperatureMagnesiumCorrected(concOligo, concentrationOfMg, concentrationOfNa, sequenceToAnalyze, engageWarpDriveCommander){
 	var fractionOfGCbp = 0;
 	var numberOfBasePairs = 0;
 	
@@ -102,7 +112,7 @@ function meltingTemperatureMagnesiumCorrected(concentrationOfMg, concentrationOf
 		var g = 8.31 * (0.486 - 0.258 * Math.log(concentrationOfNa) + 5.25 * Math.pow(10, -3) * (Math.log(concentrationOfNa)^3));
 	}
 	
-	var temperatureMg = 1/(meltingTemperatureSodiumCorrected(1, sequenceToAnalyze)) + ( a - 0.911 * Math.log(concentrationOfMg) + fractionOfGCbp * (6.26 + d * Math.log(concentrationOfMg)) + (1/ (2 * (numberOfBasePairs - 1)) ) * (-48.2 + 52.5 * Math.log(concentrationOfMg) + g * (Math.log(concentrationOfMg)^2) ) ) * Math.pow(10, -5);
+	var temperatureMg = 1/(meltingTemperatureAnalyze(sequenceToAnalyze, concOligo)) + ( a - 0.911 * Math.log(concentrationOfMg) + fractionOfGCbp * (6.26 + d * Math.log(concentrationOfMg)) + (1/ (2 * (numberOfBasePairs - 1)) ) * (-48.2 + 52.5 * Math.log(concentrationOfMg) + g * (Math.log(concentrationOfMg)^2) ) ) * Math.pow(10, -5);
 	
 	return (1/temperatureMg);
 	
@@ -122,7 +132,7 @@ function calculateTemperatureWithNaOrMg(concentrationOfMg, concentrationOfNa, se
 		return meltingTemperatureSodiumCorrected(concentrationOfNa, sequenceToAnalyze);
 	}
 	
-	else if(ratio < 0.6){
+	else if(ratio < 6.0){
 		return meltingTemperatureMagnesiumCorrected(concentrationOfMg, concentrationOfNa, sequenceToAnalyze, false);
 	}
 	
@@ -197,3 +207,68 @@ function hybridizationPercentBound(concentrationOfStrand1, concentrationOfStrand
 	return theta;
 	
 }
+
+/*-----------------------------------
+  ------- Finding Temperature -------
+  -----------------------------------*/
+
+var findValues = function(neighbor) {
+	var nnThermo = [0,0];
+
+	switch(neighbor){
+		case "AA":
+		case "TT":
+			nnThermo = [-7.9, -22.2];
+			break;
+		case "AT":
+			nnThermo = [-7.2, -20.4];
+			break;
+		case "TA":
+			nnThermo = [-7.2, -21.3];
+			break;
+		case "CA":
+		case "TG":
+			nnThermo = [-8.5, -22.7];
+			break;
+		case "GT":
+		case "AC":
+			nnThermo = [-8.4, -22.4];
+			break;
+		case "CT":
+		case "AG":
+			nnThermo = [-7.8, -21];
+			break;
+		case "GA":
+		case "TC":
+			nnThermo = [-8.2, -22.2];
+			break;
+		case "CG":
+			nnThermo = [-10.6, -27.2];
+			break;
+		case "GC":
+			nnThermo = [-9.8, -24.4];
+			break;
+		case "GG":
+		case "CC":
+			nnThermo = [-8, -19.9];
+			break;
+		default:
+	}
+	return nnThermo;
+};
+
+var initValues = function(c) {
+	var result = [];
+	switch(c) {
+		case "A":
+		case "T":
+			result = [2.3, 4.1];
+			break;
+		case "G":
+		case "C":
+			result = [0.1, -2.8];
+			break;
+		default:
+	}
+	return result;
+};
