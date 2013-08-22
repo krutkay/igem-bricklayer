@@ -2006,21 +2006,21 @@ img {
   border-radius: 0 500px 500px 0;
 }
 /* line 67, ../../sass/gumby/ui/_buttons.scss */
-.btn.primary, #cart div.btn, #part div.btn, .skiplink.primary, #cart div.skiplink, #part div.skiplink {
+.btn.primary, .skiplink.primary {
   background: #f6b83f;
   border: 1px solid #f6b83f;
   color: #644405;
 }
 /* line 70, ../../sass/gumby/ui/_buttons.scss */
-.btn.primary:hover, #cart div.btn:hover, #part div.btn:hover, .skiplink.primary:hover, #cart div.skiplink:hover, #part div.skiplink:hover {
+.btn.primary:hover, .skiplink.primary:hover {
   background: #f8ca70;
 }
 /* line 73, ../../sass/gumby/ui/_buttons.scss */
-.btn.primary:active, #cart div.btn:active, #part div.btn:active, .skiplink.primary:active, #cart div.skiplink:active, #part div.skiplink:active {
+.btn.primary:active, .skiplink.primary:active {
   background: #f4a60e;
 }
 /* line 94, ../../sass/gumby/ui/_buttons.scss */
-.btn.primary a, #cart div.btn a, #part div.btn a, .btn.primary input, #cart div.btn input, #part div.btn input, .btn.primary button, #cart div.btn button, #part div.btn button, .skiplink.primary a, #cart div.skiplink a, #part div.skiplink a, .skiplink.primary input, #cart div.skiplink input, #part div.skiplink input, .skiplink.primary button, #cart div.skiplink button, #part div.skiplink button {
+.btn.primary a, .btn.primary input, .btn.primary button, .skiplink.primary a, .skiplink.primary input, .skiplink.primary button {
   color: #644405;
 }
 /* line 67, ../../sass/gumby/ui/_buttons.scss */
@@ -2149,7 +2149,7 @@ img {
   border-radius: 0;
 }
 /* line 125, ../../sass/gumby/ui/_buttons.scss */
-.btn.pretty.primary, .pretty .primary.btn, .pretty #cart div.btn, #cart .pretty div.btn, .pretty #part div.btn, #part .pretty div.btn, .pretty .primary.skiplink, .pretty #cart div.skiplink, #cart .pretty div.skiplink, .pretty #part div.skiplink, #part .pretty div.skiplink, .primary.skiplink.pretty:hover, #cart div.skiplink.pretty:hover, #part div.skiplink.pretty:hover, .primary.skiplink.pretty:active, #cart div.skiplink.pretty:active, #part div.skiplink.pretty:active, #cart div.btn.pretty, #part div.btn.pretty, .skiplink.pretty.primary, #cart div.skiplink.pretty, #part div.skiplink.pretty {
+.btn.pretty.primary, .pretty .primary.btn, .pretty .primary.skiplink, .primary.skiplink.pretty:hover, .primary.skiplink.pretty:active, .skiplink.pretty.primary {
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #fbdca0), color-stop(100%, #fbba3a));
   background-image: -webkit-linear-gradient(#fbdca0, #fbba3a);
   background-image: -moz-linear-gradient(#fbdca0, #fbba3a);
@@ -2161,7 +2161,7 @@ img {
   border: 1px solid #de960a;
 }
 /* line 129, ../../sass/gumby/ui/_buttons.scss */
-.pretty .primary.btn:hover, .pretty #cart div.btn:hover, #cart .pretty div.btn:hover, .pretty #part div.btn:hover, #part .pretty div.btn:hover, .pretty .primary.skiplink:hover, .pretty #cart div.skiplink:hover, #cart .pretty div.skiplink:hover, .pretty #part div.skiplink:hover, #part .pretty div.skiplink:hover, .primary.btn.pretty:hover, #cart div.btn.pretty:hover, #part div.btn.pretty:hover, .primary.skiplink.pretty:hover, #cart div.skiplink.pretty:hover, #part div.skiplink.pretty:hover, .skiplink.pretty.primary:hover, #cart div.skiplink.pretty:hover, #part div.skiplink.pretty:hover {
+.pretty .primary.btn:hover, .pretty .primary.skiplink:hover, .primary.btn.pretty:hover, .primary.skiplink.pretty:hover, .skiplink.pretty.primary:hover {
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #a2d4fc), color-stop(100%, #54b2fe));
   background-image: -webkit-linear-gradient(#a2d4fc, #54b2fe);
   background-image: -moz-linear-gradient(#a2d4fc, #54b2fe);
@@ -2173,7 +2173,7 @@ img {
   border: 1px solid #0e90f8;
 }
 /* line 134, ../../sass/gumby/ui/_buttons.scss */
-.pretty .primary.btn:active, .pretty #cart div.btn:active, #cart .pretty div.btn:active, .pretty #part div.btn:active, #part .pretty div.btn:active, .pretty .primary.skiplink:active, .pretty #cart div.skiplink:active, #cart .pretty div.skiplink:active, .pretty #part div.skiplink:active, #part .pretty div.skiplink:active, .primary.btn.pretty:active, #cart div.btn.pretty:active, #part div.btn.pretty:active, .primary.skiplink.pretty:active, #cart div.skiplink.pretty:active, #part div.skiplink.pretty:active, .skiplink.pretty.primary:active, #cart div.skiplink.pretty:active, #part div.skiplink.pretty:active {
+.pretty .primary.btn:active, .pretty .primary.skiplink:active, .primary.btn.pretty:active, .primary.skiplink.pretty:active, .skiplink.pretty.primary:active {
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #fbba3a), color-stop(100%, #fbdca0));
   background-image: -webkit-linear-gradient(#fbba3a, #fbdca0);
   background-image: -moz-linear-gradient(#fbba3a, #fbdca0);
@@ -2184,7 +2184,7 @@ img {
   box-shadow: inset 0 0 3px white;
 }
 /* line 150, ../../sass/gumby/ui/_buttons.scss */
-.btn.pretty.primary a, .pretty .primary.btn a, .pretty #cart div.btn a, #cart .pretty div.btn a, .pretty #part div.btn a, #part .pretty div.btn a, .pretty .primary.skiplink a, .pretty #cart div.skiplink a, #cart .pretty div.skiplink a, .pretty #part div.skiplink a, #part .pretty div.skiplink a, .primary.skiplink.pretty:hover a, #cart div.skiplink.pretty:hover a, #part div.skiplink.pretty:hover a, .primary.skiplink.pretty:active a, #cart div.skiplink.pretty:active a, #part div.skiplink.pretty:active a, #cart div.btn.pretty a, #part div.btn.pretty a, .btn.pretty.primary input, .pretty .primary.btn input, .pretty #cart div.btn input, #cart .pretty div.btn input, .pretty #part div.btn input, #part .pretty div.btn input, .pretty .primary.skiplink input, .pretty #cart div.skiplink input, #cart .pretty div.skiplink input, .pretty #part div.skiplink input, #part .pretty div.skiplink input, .primary.skiplink.pretty:hover input, #cart div.skiplink.pretty:hover input, #part div.skiplink.pretty:hover input, .primary.skiplink.pretty:active input, #cart div.skiplink.pretty:active input, #part div.skiplink.pretty:active input, #cart div.btn.pretty input, #part div.btn.pretty input, .btn.pretty.primary button, .pretty .primary.btn button, .pretty #cart div.btn button, #cart .pretty div.btn button, .pretty #part div.btn button, #part .pretty div.btn button, .pretty .primary.skiplink button, .pretty #cart div.skiplink button, #cart .pretty div.skiplink button, .pretty #part div.skiplink button, #part .pretty div.skiplink button, .primary.skiplink.pretty:hover button, #cart div.skiplink.pretty:hover button, #part div.skiplink.pretty:hover button, .primary.skiplink.pretty:active button, #cart div.skiplink.pretty:active button, #part div.skiplink.pretty:active button, #cart div.btn.pretty button, #part div.btn.pretty button, .skiplink.pretty.primary a, #cart div.skiplink.pretty a, #part div.skiplink.pretty a, .skiplink.pretty.primary input, #cart div.skiplink.pretty input, #part div.skiplink.pretty input, .skiplink.pretty.primary button, #cart div.skiplink.pretty button, #part div.skiplink.pretty button {
+.btn.pretty.primary a, .pretty .primary.btn a, .pretty .primary.skiplink a, .primary.skiplink.pretty:hover a, .primary.skiplink.pretty:active a, .btn.pretty.primary input, .pretty .primary.btn input, .pretty .primary.skiplink input, .primary.skiplink.pretty:hover input, .primary.skiplink.pretty:active input, .btn.pretty.primary button, .pretty .primary.btn button, .pretty .primary.skiplink button, .primary.skiplink.pretty:hover button, .primary.skiplink.pretty:active button, .skiplink.pretty.primary a, .skiplink.pretty.primary input, .skiplink.pretty.primary button {
   text-shadow: 0 1px 1px #c68609;
 }
 /* line 125, ../../sass/gumby/ui/_buttons.scss */
@@ -6473,7 +6473,7 @@ form fieldset legend {
   color: #fff;
 }
 /* line 15, ../../sass/gumby/ui/_labels.scss */
-.badge.primary, #cart div.badge, #part div.badge, .label.primary, #cart div.label, #part div.label {
+.badge.primary, .label.primary {
   background: #f6b83f;
 }
 /* line 34, ../../sass/gumby/ui/_labels.scss */
@@ -6639,7 +6639,7 @@ form fieldset legend {
 }
 
 /* line 60, ../../sass/gumby/ui/_labels.scss */
-.alert, #cart div, #part div {
+.alert, #addPartList div {
   padding: 0 10px;
   font-family: "Open Sans", Helvetica, Arial;
   font-weight: 600;
@@ -6655,19 +6655,19 @@ form fieldset legend {
   border-radius: 4px;
 }
 /* line 70, ../../sass/gumby/ui/_labels.scss */
-.alert.primary, #cart div, #part div {
+.alert.primary, #addPartList div.primary {
   background: #fbdca0;
   border: 1px solid #f6b83f;
   color: #4c3304;
 }
 /* line 70, ../../sass/gumby/ui/_labels.scss */
-.alert.secondary, #cart div.secondary, #part div.secondary {
+.alert.secondary, #addPartList div.secondary {
   background: #df8989;
   border: 1px solid #ca3838;
   color: #170606;
 }
 /* line 70, ../../sass/gumby/ui/_labels.scss */
-.alert.default, #cart div.default, #part div.default {
+.alert.default, #addPartList div.default {
   background: white;
   border: 1px solid #f2f2f2;
   color: #7f7f7f;
@@ -6675,27 +6675,27 @@ form fieldset legend {
   border: 1px solid #f2f2f2;
 }
 /* line 70, ../../sass/gumby/ui/_labels.scss */
-.alert.info, #cart div.info, #part div.info {
+.alert.info, #addPartList div.info {
   background: #7b8085;
   border: 1px solid #4a4d50;
   color: black;
   color: #f2f2f2;
 }
 /* line 70, ../../sass/gumby/ui/_labels.scss */
-.alert.danger, #cart div.danger, #part div.danger {
+.alert.danger, #addPartList div.danger {
   background: #df8989;
   border: 1px solid #ca3838;
   color: #170606;
 }
 /* line 70, ../../sass/gumby/ui/_labels.scss */
-.alert.warning, #cart div.warning, #part div.warning {
+.alert.warning, #addPartList div.warning {
   background: #fbdca0;
   border: 1px solid #f6b83f;
   color: #4c3304;
   color: #644405;
 }
 /* line 70, ../../sass/gumby/ui/_labels.scss */
-.alert.success, #cart div.success, #part div.success {
+.alert.success, #addPartList div.success {
   background: #91e26a;
   border: 1px solid #58c026;
   color: black;
@@ -7111,20 +7111,33 @@ table.rounded > tbody:first-child tr:first-child td {
 }
 
 /* line 32, ../../sass/gumby/custom/_annotation.scss */
-.label.rbs {
+.device {
+  background: #5c3566;
+  color: white;
+}
+
+/* line 32, ../../sass/gumby/custom/_annotation.scss */
+.rbs {
   background: #58c026;
+  color: #3b3b3b;
 }
+
 /* line 32, ../../sass/gumby/custom/_annotation.scss */
-.label.terminator {
+.terminator {
   background: #ca3838;
+  color: white;
 }
+
 /* line 32, ../../sass/gumby/custom/_annotation.scss */
-.label.coding {
+.coding {
   background: #4a4d50;
+  color: white;
 }
+
 /* line 32, ../../sass/gumby/custom/_annotation.scss */
-.label.promoter {
+.promoter {
   background: #e6a82f;
+  color: #3b3b3b;
 }
 
 /* line 1, ../../sass/gumby/custom/_search.scss */
@@ -7148,6 +7161,119 @@ table.rounded > tbody:first-child tr:first-child td {
 #searchResultsTable .partExtended {
   display: none;
   border-bottom: 1px solid #d04526;
+}
+
+/* line 30, ../../sass/gumby/custom/_construction.scss */
+#addPartList div {
+  text-decoration: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 500px;
+  white-space: nowrap;
+}
+/* line 4, ../../../../../.rvm/gems/ruby-2.0.0-p247/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/typography/links/_hover-link.scss */
+#addPartList div:hover {
+  text-decoration: underline;
+}
+/* line 39, ../../sass/gumby/custom/_construction.scss */
+#addPartList div:hover {
+  cursor: pointer;
+}
+
+/* line 44, ../../sass/gumby/custom/_construction.scss */
+#cart li > div {
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  -ms-border-radius: 7px;
+  -o-border-radius: 7px;
+  border-radius: 7px;
+  border: 1px solid white;
+  font-size: 12px;
+  height: 100px;
+  line-height: 15px;
+  margin: 0px 5px;
+  padding: 2px;
+  overflow: hidden;
+  text-align: center;
+  text-overflow: ellipsis;
+  width: 146px;
+  margin-bottom: 5px;
+}
+/* line 15, ../../sass/gumby/custom/_construction.scss */
+#cart li > div.selected {
+  border: 1px solid red;
+}
+/* line 19, ../../sass/gumby/custom/_construction.scss */
+#cart li > div:hover {
+  cursor: pointer;
+}
+/* line 23, ../../sass/gumby/custom/_construction.scss */
+#cart li > div .title {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 3px;
+}
+
+/* line 49, ../../sass/gumby/custom/_construction.scss */
+#constructionLine {
+  overflow-x: scroll;
+  text-align: center;
+  width: 100%;
+}
+/* line 54, ../../sass/gumby/custom/_construction.scss */
+#constructionLine #scroller {
+  height: 105px;
+}
+/* line 57, ../../sass/gumby/custom/_construction.scss */
+#constructionLine #scroller .add {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  background-image: url("../../images/add-v.png");
+  float: left;
+  height: 100px;
+  margin: 0px 5px;
+  width: 30px;
+}
+/* line 66, ../../sass/gumby/custom/_construction.scss */
+#constructionLine #scroller .add:hover {
+  background-image: url("../../images/add-v-hover.png");
+  cursor: pointer;
+}
+/* line 72, ../../sass/gumby/custom/_construction.scss */
+#constructionLine #scroller .part {
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  -ms-border-radius: 7px;
+  -o-border-radius: 7px;
+  border-radius: 7px;
+  border: 1px solid white;
+  font-size: 12px;
+  height: 100px;
+  line-height: 15px;
+  margin: 0px 5px;
+  padding: 2px;
+  overflow: hidden;
+  text-align: center;
+  text-overflow: ellipsis;
+  width: 146px;
+  float: left;
+}
+/* line 15, ../../sass/gumby/custom/_construction.scss */
+#constructionLine #scroller .part.selected {
+  border: 1px solid red;
+}
+/* line 19, ../../sass/gumby/custom/_construction.scss */
+#constructionLine #scroller .part:hover {
+  cursor: pointer;
+}
+/* line 23, ../../sass/gumby/custom/_construction.scss */
+#constructionLine #scroller .part .title {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 3px;
 }
 
 /* line 6, ../../sass/gumby/_custom.scss */
