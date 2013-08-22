@@ -22,15 +22,15 @@ $rfc-lighten: 32%;
 // ==== Add part type colours to gumby labels ====
 // green, red, dark, yellow
 $part-types:
-	rbs #58c026,
-	terminator #ca3838,
-	coding #4a4d50,
-	promoter #e6a82f;
+	device #5c3566 white,
+	rbs #58c026 darken($body-font-color, 10%),
+	terminator #ca3838 white,
+	coding #4a4d50 white,
+	promoter #e6a82f darken($body-font-color, 10%);
 
-.label {
-	@each $type in $part-types {
-		&.#{nth($type, 1)} {
-			background: nth($type, 2);
-		}
+@each $type in $part-types {
+	.#{nth($type, 1)} {
+		background: nth($type, 2);
+		color: nth($type, 3);
 	}
 }
