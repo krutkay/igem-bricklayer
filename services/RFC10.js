@@ -46,7 +46,6 @@ var warningSites = function(sqnc) {
   ------------------------------------------------*/
 
 var calculateMeltingTemperature = function(sqnc) {
-	console.log(sqnc);
 	var R = 1.987;
 	var H = 0;
 	var S = 0;
@@ -156,59 +155,76 @@ var reverseNts = function(sqnc) {
   -----------------------------*/
 
 var generatePrimers = function(sqnc) {
-	var fp = "GAATTCGCGGCCGCTTCTAGAG";
-	var rp = "CTGCAGCGGCCGCTACTAGTA";
+	var pre = "GAATTCGCGGCCGCTTCTAGAG";
+	var suf = "CTGCAGCGGCCGCTACTAGTA";
 	var coding = (sqnc.search("ATG") === 0);
 	var answer = prompt("Is this part coding or non-coding? (y/n)").toLowerCase();
 	switch(answer) {
 		case "y":
 			if(!coding) {
-				alert("ATG start codon was not found. Fp for non-coding will be used.");
-			} else {
-				fp = "GAATTCGCGGCCGCTTCTAG";
+				alert("ATG start codon was not found. Replacing start codon with ATG.");
+				sqnc = "ATG" + sqnc.slice(3);
+				stopCodon(sqnc);
 			}
+			pre = "GAATTCGCGGCCGCTTCTAG";
 			break;
 		case "n":
 			if(coding) {
 				alert("ATG start codon was found. Fp for coding will be used.");
-				fp = "GAATTCGCGGCCGCTTCTAG";
+				pre = "GAATTCGCGGCCGCTTCTAG";
 			}
 			break;
 	}
 
-	var bank = [fp + sqnc, rp + reverseNts(sqnc)];
+	var bank = [sqnc, reverseNts(sqnc)];
 
 	//Calculating for Fp
-	fp = bank[0].substring(0,18);
-	for(var i=18; i<bank[0].length; i++){
+	var fp = bank[0].substr(0,10);
+	for(var i=10; i<bank[0].length; i++){
 		var meltTemp = calculateMeltingTemperature(fp);
-		if(meltTemp > 65){
-			console.log("Initial primer temperature exceeds temperature range.");
+		if(meltTemp >= 65){
+			console.log("Primers with annealing temperatures in this range cannot be made. Please input a larger temperature range.");
 			break;
 		} else {
-			if(meltTemp >= 55){
+			if(meltTemp > 55 && meltTemp < 65){
 				break;
 			} else {
 				fp = fp.concat(bank[0].charAt(i));
 			}
 		}
 	}
+	if(calculateMeltingTemperature(fp) <= 55){
+		console.log("Primers with annealing temperatures in this range cannot be made. Please input a larger temperature range.");
+	}
+	
+	// Adding prefix
+	fp = pre + fp;
 
+	console.log("Forward Primer: " + fp);
+	
 	//Calculating for Rp
-	rp = bank[1].substring(0,18);
-	for(var i=18; i<bank[1].length; i++){
+	var rp = bank[1].substr(0,10);
+	for(var i=10; i<bank[1].length; i++){
 		var meltTemp = calculateMeltingTemperature(rp);
-		if(meltTemp > 65){
-			console.log("Initial primer temperature exceeds temperature range.");
+		if(meltTemp >= 65){
+			console.log("Primers with annealing temperatures in this range cannot be made. Please input a larger temperature range.");
 			break;
 		} else {
-			if(meltTemp >= 55){
+			if(meltTemp > 55 && meltTemp < 65){
 				break;
 			} else {
 				rp = rp.concat(bank[1].charAt(i));
 			}
 		}
 	}
+	if(calculateMeltingTemperature(rp) <= 55){
+		console.log("Primers with annealing temperatures in this range cannot be made. Please input a larger temperature range.");
+	}
+	
+	// Adding suffix
+	rp = suf + rp;
+	
+	console.log("Reverse Primer: " + rp);
 
 	return [fp,rp];
 };
@@ -220,7 +236,7 @@ var generatePrimers = function(sqnc) {
 var stopCodon = function(sqnc) {
 	var endOfSqnc = sqnc.substring(sqnc.length-7,sqnc.length);
 	if(endOfSqnc !== "TAATAA") {
-		alert("It is recommended that each coding region ends with the stop codon TAATAA");
+		alert("It is highly recommended that all coding regions terminate with in-frame TAATAA stop codons.");
 	}
 };
 
@@ -232,10 +248,9 @@ sequence = sequence.toUpperCase();
 if(isCompatible(sequence)) {
 	warningSites(sequence);
 	var primers = generatePrimers(sequence);
-	stopCodon(sequence);
 	window.confirm("Forward primer: " + primers[0] + "\nReverse primer: " + primers[1]);
-	console.log("Forward primer: " + primers[0]);
-	console.log("Reverse primer: " + primers[1]);
+	//console.log("Forward primer: " + primers[0]);
+	//console.log("Reverse primer: " + primers[1]);
 } else {
 	alert("THIS SEQUENCE IS NOT COMPATIBLE WITH RFC10!")
 };
