@@ -41,40 +41,99 @@ var warningSites = function(sqnc) {
 	}
 };
 
-/*------------------------------------
-  ------- Counting Nucleotides -------
-  ------------------------------------*/
-var countNts = function(sqnc) {
-	var nts = [0,0,0,0]; // ATGC in corresponding index
-	for(var i=0; i<sqnc.length; i++){
-		var c = sqnc.charAt(i);
-		switch(c) {
-			case "A":
-				nts[0]++;
-				break;
-			case "T":
-				nts[1]++;
-				break;
-			case "G":
-				nts[2]++;
-				break;
-			case "C":
-				nts[3]++;
-				break;
-			default:
-				/*Do nothing*/
-		}
-	}
-	return nts;
-};
-
 /*------------------------------------------------
   ------- Calculating Melting Temperatures -------
   ------------------------------------------------*/
-var calcMeltTemp = function(sqnc) {
-	var nts = countNts(sqnc);
-	return (64.9 + (41 * (nts[2] + nts[3] - 16.4) / sqnc.length));
+
+var calculateMeltingTemperature = function(sqnc) {
+	var R = 1.987;
+	var H = 0;
+	var S = 0;
+	var fractionOfGCbp = 0;
+
+	for(var i=0; i<sqnc.length-1; i++) {
+		var bp = sqnc.substring(i,i+2);
+		if(bp === "GC"){
+			fractionOfGCbp++;
+		}
+		var nnValues = findValues(bp);
+		H+=nnValues[0];
+		S+=nnValues[1];
+	}
+
+	fractionOfGCbp = fractionOfGCbp/sqnc.length;
+	var startingValues = initValues(sqnc.charAt(0));
+	var endingValues = initValues(sqnc.charAt(sqnc.length-1));
+	H = H + startingValues[0] + endingValues[0];
+	S = S + startingValues[1] + endingValues[1];
+
+
+	var tempWithOneMolar = (1000 * H) / (S + (R * Math.log(250*Math.pow(10,-9) / 2)));
+	var tempWithSaltAdjusted = 1/(tempWithOneMolar) + ((4.29 * fractionOfGCbp - 3.95) * Math.log(0.05) + 0.940 * (Math.log(0.05))^2) * Math.pow(10, -5);
+	return (1/tempWithSaltAdjusted) -273.15;
 };
+
+var findValues = function(neighbor) {
+	var nnThermo = [0,0];
+
+	switch(neighbor){
+		case "AA":
+		case "TT":
+			nnThermo = [-7.9, -22.2];
+			break;
+		case "AT":
+			nnThermo = [-7.2, -20.4];
+			break;
+		case "TA":
+			nnThermo = [-7.2, -21.3];
+			break;
+		case "CA":
+		case "TG":
+			nnThermo = [-8.5, -22.7];
+			break;
+		case "GT":
+		case "AC":
+			nnThermo = [-8.4, -22.4];
+			break;
+		case "CT":
+		case "AG":
+			nnThermo = [-7.8, -21];
+			break;
+		case "GA":
+		case "TC":
+			nnThermo = [-8.2, -22.2];
+			break;
+		case "CG":
+			nnThermo = [-10.6, -27.2];
+			break;
+		case "GC":
+			nnThermo = [-9.8, -24.4];
+			break;
+		case "GG":
+		case "CC":
+			nnThermo = [-8, -19.9];
+			break;
+		default:
+	}
+	return nnThermo;
+};
+
+var initValues = function(c) {
+	var result = [];
+	switch(c) {
+		case "A":
+		case "T":
+			result = [2.3, 4.1];
+			break;
+		case "G":
+		case "C":
+			result = [0.1, -2.8];
+			break;
+		default:
+	}
+	return result;
+};
+
 
 /*-------------------------------------------
   ------- Complimentary sequence code -------
@@ -104,34 +163,50 @@ var generatePrimers = function(sqnc) {
 			} else {
 				fp = "GAATTCGCGGCCGCTTCTAG";
 			}
+			break;
 		case "n":
 			if(coding) {
 				alert("ATG start codon was found. Fp for coding will be used.");
 				fp = "GAATTCGCGGCCGCTTCTAG";
 			}
+			break;
 	}
 
-	var temp = [fp + sqnc, rp + reverseNts(sqnc)];
+	var bank = [fp + sqnc, rp + reverseNts(sqnc)];
 
 	//Calculating for Fp
-	fp = temp[0].substring(0,18);
-	for(var i=18; i<temp[0].length; i++){
-		var meltTemp = calcMeltTemp(fp)
-		if(55 <= meltTemp && meltTemp <= 60){
+	fp = bank[0].substring(0,18);
+	for(var i=18; i<bank[0].length; i++){
+		var meltTemp = calculateMeltingTemperature(fp);
+		console.log(fp);
+		console.log(meltTemp);
+		if(meltTemp > 60){
+			console.log("Initial primer temperature exceeds temperature range.");
 			break;
 		} else {
-			fp = fp.concat(temp[0].charAt(i));
+			if(meltTemp >= 55){
+				break;
+			} else {
+				fp = fp.concat(bank[0].charAt(i));
+			}
 		}
 	}
 
 	//Calculating for Rp
-	rp = temp[1].substring(0,18);
-	for(var i=18; i<temp[1].length; i++){
-		var meltTemp = calcMeltTemp(rp)
-		if(55 <= meltTemp && meltTemp <= 60){
+	rp = bank[1].substring(0,18);
+	for(var i=18; i<bank[1].length; i++){
+		var meltTemp = calculateMeltingTemperature(rp);
+		console.log(rp);
+		console.log(meltTemp);
+		if(meltTemp > 60){
+			console.log("Initial primer temperature exceeds temperature range.");
 			break;
 		} else {
-			rp = rp.concat(temp[1].charAt(i));
+			if(meltTemp >= 55){
+				break;
+			} else {
+				rp = rp.concat(bank[1].charAt(i));
+			}
 		}
 	}
 
@@ -152,7 +227,8 @@ var stopCodon = function(sqnc) {
 /*------------------
   ------- UI -------
   ------------------*/
-var sequence = prompt("Enter sequence:").toUpperCase();
+var sequence = /*Enter sequence here*/;
+sequence = sequence.toUpperCase();
 if(isCompatible(sequence)) {
 	warningSites(sequence);
 	var primers = generatePrimers(sequence);
