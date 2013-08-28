@@ -46,6 +46,7 @@ var warningSites = function(sqnc) {
   ------------------------------------------------*/
 
 var calculateMeltingTemperature = function(sqnc) {
+	console.log(sqnc);
 	var R = 1.987;
 	var H = 0;
 	var S = 0;
@@ -66,11 +67,14 @@ var calculateMeltingTemperature = function(sqnc) {
 	var endingValues = initValues(sqnc.charAt(sqnc.length-1));
 	H = H + startingValues[0] + endingValues[0];
 	S = S + startingValues[1] + endingValues[1];
+	
+	// Entropy correction due to  salt dependence
+	S = S + 0.368 * (sqnc.length - 1) * Math.log(0.05); // Default [Na+] = 50 microMolar
 
 
-	var tempWithOneMolar = (1000 * H) / (S + (R * Math.log(250*Math.pow(10,-9) / 2)));
-	var tempWithSaltAdjusted = 1/(tempWithOneMolar) + ((4.29 * fractionOfGCbp - 3.95) * Math.log(0.05) + 0.940 * (Math.log(0.05))^2) * Math.pow(10, -5);
-	return (1/tempWithSaltAdjusted) -273.15;
+	var meltingTemp = ((1000 * H) / (S + (R * Math.log(250*Math.pow(10,-9) / 2)))) - 273.15; // Default [oligo] = 0.25 microMolar
+	console.log(meltingTemp);
+	return meltingTemp;
 };
 
 var findValues = function(neighbor) {
@@ -178,9 +182,7 @@ var generatePrimers = function(sqnc) {
 	fp = bank[0].substring(0,18);
 	for(var i=18; i<bank[0].length; i++){
 		var meltTemp = calculateMeltingTemperature(fp);
-		console.log(fp);
-		console.log(meltTemp);
-		if(meltTemp > 60){
+		if(meltTemp > 65){
 			console.log("Initial primer temperature exceeds temperature range.");
 			break;
 		} else {
@@ -196,9 +198,7 @@ var generatePrimers = function(sqnc) {
 	rp = bank[1].substring(0,18);
 	for(var i=18; i<bank[1].length; i++){
 		var meltTemp = calculateMeltingTemperature(rp);
-		console.log(rp);
-		console.log(meltTemp);
-		if(meltTemp > 60){
+		if(meltTemp > 65){
 			console.log("Initial primer temperature exceeds temperature range.");
 			break;
 		} else {
@@ -227,7 +227,7 @@ var stopCodon = function(sqnc) {
 /*------------------
   ------- UI -------
   ------------------*/
-var sequence = /*Enter sequence here*/;
+var sequence = "atgtccgaagaattgatcaaggaaaacatgcacatgaaattgtatatggaaggtactgtcgacaaccaccacttcaaatgcacctccgaaggtgaaggtaaaccttatgaaggtacacaaaccatgagaatcaaagtcgtcgaaggtggtccattgccatttgctttcgacattttggccacatctttcttgtatggttccaaaactttcatcaatcacacccaaggtattccagacttctttaaacaatctttccctgaaggtttcacttgggaaagagtcaccacctatgaagatggtggtgtcttgactgctactcaagacacatccttacaagacggttgcttgatctataacgtcaagattagaggtgtcaacttcacatcaaacggtcctgtcatgcaaaaaaagacattgggttgggaagctttcaccgaaactttgtatcctgccgacggtggtttagaaggtagaaacgacatggccttaaaattggtcggtggtagtcacttgattgccaacatcaaaacaacctatagatccaaaaaacctgccaaaaacttgaaaatgcctggtgtctattatgtcgactatagattggaaagaattaaggaagccaacaacgaaacttatgtcgaacaacacgaagttgctgtcgccagatattgtgacttgccttcaaaattgggtcacaaattgaac";
 sequence = sequence.toUpperCase();
 if(isCompatible(sequence)) {
 	warningSites(sequence);
