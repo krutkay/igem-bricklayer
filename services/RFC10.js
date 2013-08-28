@@ -72,7 +72,7 @@ var calculateMeltingTemperature = function(sqnc) {
 
 
 	var meltingTemp = ((1000 * H) / (S + (R * Math.log(250*Math.pow(10,-9) / 2)))) - 273.15; // Default [oligo] = 0.25 microMolar
-	console.log(meltingTemp);
+	// console.log(meltingTemp);
 	return meltingTemp;
 };
 
@@ -142,10 +142,12 @@ var initValues = function(c) {
   ------- Complimentary sequence code -------
   -------------------------------------------*/
 var reverseNts = function(sqnc) {
-	sqnc = sqnc.replace("A","T");
-	sqnc = sqnc.replace("T","A");
-	sqnc = sqnc.replace("G","C");
-	sqnc = sqnc.replace("C","G");
+	sqnc = sqnc.replace(/A/g,"X");
+	sqnc = sqnc.replace(/T/g,"A");
+	sqnc = sqnc.replace(/X/g,"T");
+	sqnc = sqnc.replace(/G/g,"X");
+	sqnc = sqnc.replace(/C/g,"G");
+	sqnc = sqnc.replace(/X/g,"C");
 	sqnc = sqnc.split("").reverse().join("");
 	return sqnc;
 };
@@ -167,6 +169,7 @@ var generatePrimers = function(sqnc) {
 				stopCodon(sqnc);
 			}
 			pre = "GAATTCGCGGCCGCTTCTAG";
+			alert("It is highly recommended that all coding regions terminate with in-frame TAATAA stop codons, replacing other stop codons (TGA, TAG).");
 			break;
 		case "n":
 			if(coding) {
@@ -177,6 +180,7 @@ var generatePrimers = function(sqnc) {
 	}
 
 	var bank = [sqnc, reverseNts(sqnc)];
+	
 
 	//Calculating for Fp
 	var fp = bank[0].substr(0,10);
@@ -200,7 +204,7 @@ var generatePrimers = function(sqnc) {
 	// Adding prefix
 	fp = pre + fp;
 
-	console.log("Forward Primer: " + fp);
+	console.log("Forward Primer: 5'-" + fp + "-3'");
 	
 	//Calculating for Rp
 	var rp = bank[1].substr(0,10);
@@ -224,26 +228,15 @@ var generatePrimers = function(sqnc) {
 	// Adding suffix
 	rp = suf + rp;
 	
-	console.log("Reverse Primer: " + rp);
+	console.log("Reverse Primer: 5'-" + rp + "-3'");
 
 	return [fp,rp];
-};
-
-/*--------------------------
-  ------- Stop codon -------
-  --------------------------*/
-
-var stopCodon = function(sqnc) {
-	var endOfSqnc = sqnc.substring(sqnc.length-7,sqnc.length);
-	if(endOfSqnc !== "TAATAA") {
-		alert("It is highly recommended that all coding regions terminate with in-frame TAATAA stop codons.");
-	}
 };
 
 /*------------------
   ------- UI -------
   ------------------*/
-var sequence = "atgtccgaagaattgatcaaggaaaacatgcacatgaaattgtatatggaaggtactgtcgacaaccaccacttcaaatgcacctccgaaggtgaaggtaaaccttatgaaggtacacaaaccatgagaatcaaagtcgtcgaaggtggtccattgccatttgctttcgacattttggccacatctttcttgtatggttccaaaactttcatcaatcacacccaaggtattccagacttctttaaacaatctttccctgaaggtttcacttgggaaagagtcaccacctatgaagatggtggtgtcttgactgctactcaagacacatccttacaagacggttgcttgatctataacgtcaagattagaggtgtcaacttcacatcaaacggtcctgtcatgcaaaaaaagacattgggttgggaagctttcaccgaaactttgtatcctgccgacggtggtttagaaggtagaaacgacatggccttaaaattggtcggtggtagtcacttgattgccaacatcaaaacaacctatagatccaaaaaacctgccaaaaacttgaaaatgcctggtgtctattatgtcgactatagattggaaagaattaaggaagccaacaacgaaacttatgtcgaacaacacgaagttgctgtcgccagatattgtgacttgccttcaaaattgggtcacaaattgaac";
+var sequence = "cacttagacggcgaggacgtggcgatggcgcatgccgacgcgctagacgatttcgatctggacatgttgggggacggggattccccggggccgggatttaccccccacgactccgccccctacggcgctctggatatggccgacttcgagtttgagcagatgtttaccgatgcccttggaattgacgagtacggtggg";
 sequence = sequence.toUpperCase();
 if(isCompatible(sequence)) {
 	warningSites(sequence);
