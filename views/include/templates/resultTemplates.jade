@@ -17,6 +17,45 @@ script#scriptDropdown
         });
     });
 
+mixin resultsRow()
+    tr(data-part='{{name}}')
+        td
+            a.text-large.part-header(href='#')
+                i.icon-right-open.resultIcon
+                | {{name}}
+        td
+            span.label(class='{{type}}') {{type}}
+        td
+            span {{length}} bp
+        td
+            span
+                span(class='rfc-yes') 10
+                span(class='rfc-yes') 12
+                span(class='rfc-yes') 21
+                span(class='rfc-no') 22
+                span(class='rfc-no') 25
+                span(class='rfc-yes') 1000
+        td
+            span
+                i.icon-star
+                | {{stars}}
+                i.icon-heart
+                | {{rating}}/5
+        td.text-right
+            a.text-large(href='#') add
+    tr.partExtended(class='{{name}}')
+        td(colspan='6')
+            p.description
+                | This is an awesome part that generates awesomeness wherever it is placed. No genetic network may be awesome without this part.
+            p.remarks
+                | Submitted {{dateSubmitted}}
+                br
+                a.red(href='{{distributionUrl') {{availablility}}
+                | -
+                span.green {{works}}
+                | -
+                | {{numUses}} uses
+
 script#templateSearchResults(type='text/x-handlebars-template')
     .row
         h2.search-title search: 'awesome'
@@ -50,117 +89,7 @@ script#templateSearchResults(type='text/x-handlebars-template')
                     a(href='#') Reviews
                 td
             //- Part
-            tr(data-part='K12345')
-                td
-                    a.text-large.part-header(href='#')
-                        i.icon-right-open.resultIcon
-                        | K12345
-                td
-                    span.promoter.label promoter
-                td
-                    span 1000 bp
-                td
-                    span
-                        span.rfc-yes 10
-                        span.rfc-yes 12
-                        span.rfc-yes 21
-                        span.rfc-no 22
-                        span.rfc-no 25
-                        span.rfc-yes 1000
-                td
-                    span
-                        i.icon-star
-                        | 7
-                        i.icon-heart
-                        | 4.6/5
-                td.text-right
-                    a.text-large(href='#') add
-            tr.K12345.partExtended
-                td(colspan='6')
-                    p.description
-                        | This is an awesome part that generates awesomeness wherever it is placed. No genetic network may be awesome without this part.
-                    p.remarks
-                        | Submitted 2012-12-12
-                        br
-                        a.red(href='#') Not available
-                        | -
-                        span.green Works
-                        | -
-                        | 21 uses
-            tr(data-part='K23456')
-                td
-                    a.text-large.part-header(href='#')
-                        i.icon-right-open.resultIcon
-                        | K23456
-                td
-                    span.rbs.label rbs
-                td
-                    span 1000 bp
-                td
-                    span
-                        span.rfc-yes 10
-                        span.rfc-yes 12
-                        span.rfc-yes 21
-                        span.rfc-no 22
-                        span.rfc-no 25
-                        span.rfc-yes 1000
-                td
-                    span
-                        i.icon-star
-                        | 7
-                        i.icon-heart
-                        | 4.6/5
-                td.text-right
-                    a.text-large(href='#') add
-            tr.K23456.partExtended
-                td(colspan='6')
-                    p.description
-                        | This is an awesome part that generates awesomeness wherever it is placed. No genetic network may be awesome without this part.
-                    p.remarks
-                        | Submitted 2012-12-12
-                        br
-                        a.red(href='#') Not available
-                        | -
-                        span.green Works
-                        | -
-                        | 21 uses
-            tr(data-part='K34567')
-                td
-                    a.text-large.part-header(href='#')
-                        i.icon-right-open.resultIcon
-                        | K34567
-                td
-                    span.coding.label coding
-                td
-                    span 1000 bp
-                td
-                    span
-                        span.rfc-yes 10
-                        span.rfc-yes 12
-                        span.rfc-yes 21
-                        span.rfc-no 22
-                        span.rfc-no 25
-                        span.rfc-yes 1000
-                td
-                    span
-                        i.icon-star
-                        | 7
-                        i.icon-heart
-                        | 4.6/5
-                td.text-right
-                    a.text-large(href='#') add
-            tr.K34567.partExtended
-                td(colspan='6')
-                    p.description
-                        | This is an awesome part that generates awesomeness wherever it is placed. No genetic network may be awesome without this part.
-                    p.remarks
-                        | Submitted 2012-12-12
-                        br
-                        a.red(href='#') Not available
-                        | -
-                        span.green Works
-                        | -
-                        | 21 uses
+            +resultsRow()
             tr(data-part='K45678')
                 td
                     a.text-large.part-header(href='#')
@@ -199,5 +128,5 @@ script#templateSearchResults(type='text/x-handlebars-template')
                         | -
                         | 21 uses
             //- Important! This row prevents odd layout changes when parts are shown.
-            tr.K45678
+            tr
                 td(colspan='6', style='width: 100%; height: 1px; padding: 0px;')
