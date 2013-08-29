@@ -3,8 +3,22 @@
 # This is because making a cross-domain request from the client side throws an error.. but seems to work
 # from the node server.
 
-igem = window.igem || {}
 brickUrl = 'api/v1/brick/'
+
+# a map of form ids to search URLS
+searches =
+    '#form-text-search': '/api/v1/search/text'
+    '#form-thousand-search': '/api/v1/search/thousand'
+    '#form-subpart-search': '/api/v1/search/subparts'
+    '#form-superpart-search': '/api/v1/search/superparts'
+
+# Attach event handlers
+for searchId, url of searches
+    # this is a closure around url.
+    $(searchId).submit do (searchId, url) ->
+        (e) ->
+            e.preventDefault()
+            Bricklayer.search url, $(searchId + " :text").val()
 
 class BioBrick
     constructor: (xml) ->
@@ -25,7 +39,7 @@ class BioBrick
     getContents: (tagName) ->
         content.data for content in @xml.find(tagName).contents()
 
-igem.search = (url, searchTerms) ->
+Bricklayer.search = (url, searchTerms) ->
     console.log "Doing search!"
     $.ajax
         type: "GET"
@@ -50,5 +64,6 @@ displayBricks = (brickList) ->
                 (data) ->
                     # console.log "Data recieved for brick #{brick}"
                     bricks.push new BioBrick data
+                    console.log bricks
             error: (error) ->
                 console.log error
