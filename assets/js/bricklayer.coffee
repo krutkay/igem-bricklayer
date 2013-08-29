@@ -19,7 +19,7 @@ Bricklayer.toggleHome = ->
 Bricklayer.toggleSearch = ->
     $(contentClass).html $(resultsTemplateId).html()
 
-Bricklayer.toggleSearch()
+Bricklayer.toggleHome()
 
 class Bricklayer.View
     constructor: (@id, @template) ->
