@@ -56,6 +56,7 @@ Bricklayer.search = (url, searchTerms) ->
 # Step 2: Fetch full information for each brick, one by one
 displayBricks = (brickList) ->
     bricks = []
+    Bricklayer.ResultsView.render {}
     for brick in brickList
         $.ajax
             type: "GET"
@@ -63,7 +64,27 @@ displayBricks = (brickList) ->
             success: do (brick) ->
                 (data) ->
                     # console.log "Data recieved for brick #{brick}"
-                    bricks.push new BioBrick data
-                    console.log bricks
+                    brick = new BioBrick data
+                    BrickResultView = new Bricklayer.AppendView '#results', '#templateResultsRow'
+                    BrickResultView.afterRender = ->
+                        console.log 'in after render'
+                        # attach click handler for dropdown
+                        $(".part-header").click (e) ->
+                            e.preventDefault()
+                            target = $(e.currentTarget)
+                            part = target.parents("tr").data "part"
+                            extended = $("tr.partExtended." + part)
+                            icon = target.find ".resultIcon"
+                            if extended.css("display") is "none"
+                                extended.show 300
+                                icon.toggleClass("icon-right-open").toggleClass "icon-down-open"
+                            else
+                                extended.hide()
+                                icon.toggleClass("icon-right-open").toggleClass "icon-down-open"
+
+                    BrickResultView.render brick
+                    bricks.push brick
+
+                    console.log brick
             error: (error) ->
                 console.log error
