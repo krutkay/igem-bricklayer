@@ -13,16 +13,29 @@ class View
 
     # `context` is an object that defines the variables in the handlebars template
     render: (context) ->
-        $(@selector).html Handlebars.compile($(@template).html())(context)
+        raw = $(@template).html()
+        compiled = Handlebars.compile raw
+        $(@selector).html compiled context
+        @afterRender()
+
+    afterRender: -> # called after rendering is complete
+
+Bricklayer.AppendView =
+class AppendView extends View
+    render: (context) ->
+        raw = $(@template).html()
+        compiled = Handlebars.compile raw
+        $(@selector).append compiled context
+        @afterRender()
 
 Bricklayer.HeaderView =
 HeaderView = new View '.header', '#templateUserHeader'
 
-Bricklayer.SearchView =
-SearchView = new View '.content', '#templateSearchFields'
+Bricklayer.HomeView =
+HomeView = new View '.content', '#templateSearchFields'
 
 Bricklayer.ResultsView =
 ResultsView = new View '.content', '#templateSearchResults'
 
 HeaderView.render {}
-ResultsView.render {}
+HomeView.render {}
