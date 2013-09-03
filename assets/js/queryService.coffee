@@ -33,6 +33,8 @@ class BioBrick
         @author        = @getContent "part_author"
         @sequence      = @getContent "seq_data"
 
+        @length = @sequence.length
+
     getContent: (tagName) ->
         @xml.find(tagName).contents()[0]?.data
 
@@ -63,17 +65,15 @@ displayBricks = (brickList) ->
             url: brickUrl + brick
             success: do (brick) ->
                 (data) ->
-                    # console.log "Data recieved for brick #{brick}"
                     brick = new BioBrick data
                     BrickResultView = new Bricklayer.AppendView '#results', '#templateResultsRow'
                     BrickResultView.afterRender = ->
-                        console.log 'in after render'
                         # attach click handler for dropdown
-                        $(".part-header").click (e) ->
+                        $('a.toggle-' + brick.name).click (e) ->
                             e.preventDefault()
                             target = $(e.currentTarget)
                             part = target.parents("tr").data "part"
-                            extended = $("tr.partExtended." + part)
+                            extended = $('tr.toggle-' + brick.name)
                             icon = target.find ".resultIcon"
                             if extended.css("display") is "none"
                                 extended.show 300
@@ -84,7 +84,5 @@ displayBricks = (brickList) ->
 
                     BrickResultView.render brick
                     bricks.push brick
-
-                    console.log brick
             error: (error) ->
                 console.log error

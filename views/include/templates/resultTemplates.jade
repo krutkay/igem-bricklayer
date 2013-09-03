@@ -1,8 +1,7 @@
-//- mixin resultsRow()
 script#templateResultsRow(type='text/x-handlebars-template')
     tr(data-part='{{name}}')
         td
-            a.text-large.part-header(href='#')
+            a.text-large.part-header(class='toggle-{{name}}', href='#')
                 i.icon-right-open.resultIcon
                 | {{name}}
         td
@@ -25,10 +24,10 @@ script#templateResultsRow(type='text/x-handlebars-template')
                 | {{rating}}/5
         td.text-right
             a.text-large(href='#') add
-    tr.partExtended(class='{{name}}')
+    tr.partExtended(class='toggle-{{name}}')
         td(colspan='6')
             p.description
-                | This is an awesome part that generates awesomeness wherever it is placed. No genetic network may be awesome without this part.
+                | {{description}}
             p.remarks
                 | Submitted {{dateSubmitted}}
                 br
