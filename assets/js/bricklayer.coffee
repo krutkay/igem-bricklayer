@@ -2,24 +2,40 @@
 root = this
 Bricklayer = root.Bricklayer = {}
 
-headerClass = '.header'
-contentClass = '.content'
+###
+# Construct a view with:
+# * `selector`: the selector for the element to insert rendered templates into
+# * `template`: the id of the script tag containing the template to manage
+###
+Bricklayer.View =
+class View
+    constructor: (@selector, @template) ->
 
-headerTemplateId = '#templateUserHeader'
+    # `context` is an object that defines the variables in the handlebars template
+    render: (context) ->
+        raw = $(@template).html()
+        compiled = Handlebars.compile raw
+        $(@selector).html compiled context
+        @afterRender()
 
-homeTemplateId = '#templateSearchFields'
-resultsTemplateId = '#templateSearchResults'
+    afterRender: -> # called after rendering is complete
 
-$(headerClass).html $(headerTemplateId).html()
+Bricklayer.AppendView =
+class AppendView extends View
+    render: (context) ->
+        raw = $(@template).html()
+        compiled = Handlebars.compile raw
+        $(@selector).append compiled context
+        @afterRender()
 
-Bricklayer.toggleHome = ->
-    Handlebars.compile($(homeTemplateId).html())
-    $(contentClass).html $(homeTemplateId).html()
+Bricklayer.HeaderView =
+HeaderView = new View '.header', '#templateUserHeader'
 
-Bricklayer.toggleSearch = ->
-    $(contentClass).html $(resultsTemplateId).html()
+Bricklayer.HomeView =
+HomeView = new View '.content', '#templateSearchFields'
 
-Bricklayer.toggleHome()
+Bricklayer.ResultsView =
+ResultsView = new View '.content', '#templateSearchResults'
 
-class Bricklayer.View
-    constructor: (@id, @template) ->
+HeaderView.render {}
+HomeView.render {}

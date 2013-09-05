@@ -1,13 +1,5 @@
 extends layout
 
-//- Defines a reusable search form.
-mixin searchForm(title, id, action)
-    form(id="#{id}", action='searchResults.html')
-        .append.field
-            input.wide.text.input(type='text', placeholder='#{title}')
-            .medium.primary.btn
-                input(type='submit', value='Go')
-
 block append styles
     style.
         body{
