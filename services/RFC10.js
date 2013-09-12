@@ -18,6 +18,7 @@ var isCompatible = function(sqnc) {
 	}
 };
 
+// Sites that are not recommended inside the sequence
 var warningSites = function(sqnc) {
 	var warning = [];
 	if(sqnc.search("CAGCTG") !== -1) {
@@ -76,6 +77,7 @@ var calculateMeltingTemperature = function(sqnc) {
 	return meltingTemp;
 };
 
+// Finds enthalpy and entropy values for given nearest neighbour nucleotides
 var findValues = function(neighbor) {
 	var nnThermo = [0,0];
 
@@ -121,6 +123,7 @@ var findValues = function(neighbor) {
 	return nnThermo;
 };
 
+// Determines initial values for enthalpy and entropy for given sequence
 var initValues = function(c) {
 	var result = [];
 	switch(c) {
@@ -233,9 +236,9 @@ var generatePrimers = function(sqnc) {
 	return [fp,rp];
 };
 
-/*------------------
-  ------- UI -------
-  ------------------*/
+/*---------------------
+  ------- START -------
+  ---------------------*/
 var sequence = "cacttagacggcgaggacgtggcgatggcgcatgccgacgcgctagacgatttcgatctggacatgttgggggacggggattccccggggccgggatttaccccccacgactccgccccctacggcgctctggatatggccgacttcgagtttgagcagatgtttaccgatgcccttggaattgacgagtacggtggg";
 sequence = sequence.toUpperCase();
 if(isCompatible(sequence)) {

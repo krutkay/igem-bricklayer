@@ -57,6 +57,7 @@ var calculateMeltingTemperature = function(sqnc) {
 	return meltingTemp;
 };
 
+// Finds enthalpy and entropy values for given nearest neighbour nucleotides
 var findValues = function(neighbor) {
 	var nnThermo = [0,0];
 
@@ -102,6 +103,7 @@ var findValues = function(neighbor) {
 	return nnThermo;
 };
 
+// Determines initial values for enthalpy and entropy for given sequence
 var initValues = function(c) {
 	var result = [];
 	switch(c) {
@@ -138,8 +140,7 @@ var reverseNts = function(sqnc) {
   -----------------------------*/
 
 var generatePrimers = function(sqnc) {
-	// User needs to specify what kind of spacing for both primers
-	var pre = "GAATTCATGAGATCT";
+	var pre = "GAATTCATGAGATCT"; // User needs to specify what kind of spacing for both primers
 	var suf = "CTCGAGTTAGGATCC"; // User needs to indicate whether user wants XhoI site to be in the suffix.
 	
 	var bank = [sqnc, reverseNts(sqnc)];
@@ -196,9 +197,9 @@ var generatePrimers = function(sqnc) {
 	return [fp,rp];
 };
 
-/*------------------
-  ------- UI -------
-  ------------------*/
+/*---------------------
+  ------- START -------
+  ---------------------*/
 var sequence = "cacttagacggcgaggacgtggcgatggcgcatgccgacgcgctagacgatttcgatctggacatgttgggggacggggattccccggggccgggatttaccccccacgactccgccccctacggcgctctggatatggccgacttcgagtttgagcagatgtttaccgatgcccttggaattgacgagtacggtggg";
 sequence = sequence.toUpperCase();
 if(isCompatible(sequence)) {
