@@ -7116,15 +7116,30 @@ table.rounded > tbody:first-child tr:first-child td {
   color: white;
 }
 
+/* line 37, ../../sass/gumby/custom/_annotation.scss */
+.label.device {
+  color: white;
+}
+
 /* line 32, ../../sass/gumby/custom/_annotation.scss */
 .rbs {
   background: #58c026;
   color: #3b3b3b;
 }
 
+/* line 37, ../../sass/gumby/custom/_annotation.scss */
+.label.rbs {
+  color: white;
+}
+
 /* line 32, ../../sass/gumby/custom/_annotation.scss */
 .terminator {
   background: #ca3838;
+  color: white;
+}
+
+/* line 37, ../../sass/gumby/custom/_annotation.scss */
+.label.terminator {
   color: white;
 }
 
@@ -7134,10 +7149,20 @@ table.rounded > tbody:first-child tr:first-child td {
   color: white;
 }
 
+/* line 37, ../../sass/gumby/custom/_annotation.scss */
+.label.coding {
+  color: white;
+}
+
 /* line 32, ../../sass/gumby/custom/_annotation.scss */
 .promoter {
   background: #e6a82f;
   color: #3b3b3b;
+}
+
+/* line 37, ../../sass/gumby/custom/_annotation.scss */
+.label.promoter {
+  color: white;
 }
 
 /* line 1, ../../sass/gumby/custom/_search.scss */

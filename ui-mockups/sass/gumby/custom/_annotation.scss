@@ -33,4 +33,8 @@ $part-types:
 		background: nth($type, 2);
 		color: nth($type, 3);
 	}
+
+	.label.#{nth($type, 1)} {
+		color: white;
+	}
 }
