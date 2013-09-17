@@ -1,5 +1,4 @@
 @charset "UTF-8";
-@import url(//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700);
 /**
 * Gumby Framework
 * ---------------
@@ -7206,7 +7205,7 @@ table.rounded > tbody:first-child tr:first-child td {
 }
 
 /* line 44, ../../sass/gumby/custom/_construction.scss */
-#cart li > div {
+#brickBin li > div {
   -webkit-border-radius: 7px;
   -moz-border-radius: 7px;
   -ms-border-radius: 7px;
@@ -7225,15 +7224,15 @@ table.rounded > tbody:first-child tr:first-child td {
   margin-bottom: 5px;
 }
 /* line 15, ../../sass/gumby/custom/_construction.scss */
-#cart li > div.selected {
+#brickBin li > div.selected {
   border: 1px solid red;
 }
 /* line 19, ../../sass/gumby/custom/_construction.scss */
-#cart li > div:hover {
+#brickBin li > div:hover {
   cursor: pointer;
 }
 /* line 23, ../../sass/gumby/custom/_construction.scss */
-#cart li > div .title {
+#brickBin li > div .title {
   font-size: 14px;
   font-weight: bold;
   margin-bottom: 3px;
