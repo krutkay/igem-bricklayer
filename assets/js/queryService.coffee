@@ -25,13 +25,15 @@ class BioBrick
         @xml = $($.parseXML xml)
         @name          = @getContent "part_name"
         @description   = @getContent "part_short_desc"
-        @type          = @getContent "part_type"
+        @type          = @getContent("part_type").toLowerCase()
         @releaseStatus = @getContent "release_status"
         @partResults   = @getContent "part_results"
         @partUrl       = @getContent "part_url"
+        @rating        = @getContent "part_rating"
         @dateEntered   = @getContent "part_entered"
         @author        = @getContent "part_author"
         @sequence      = @getContent "seq_data"
+        @availablility = @getContent "sample_status"
 
         @length = @sequence.length
 
