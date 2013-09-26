@@ -1,8 +1,7 @@
 
-
 class Bricklayer.BrickBin
 	constructor: ->
-		@bricks = new Array()
+		@bricks = []
 
 	addBrick: (brickName) ->
 
@@ -18,7 +17,7 @@ class Bricklayer.BrickBin
 					brick = new BioBrick data
 					@bricks.push brick
 
-					save
+					save()
 
 				error: (error) ->
 					console.log error
@@ -29,14 +28,14 @@ class Bricklayer.BrickBin
 	removeBrick: (brick) ->
 		index = -1
 
-		for(i = 0; i < @bricks.length; i++)
-			if @bricks[i].name == brick
+		for brick, i in @bricks
+			if name == brick.name
 				index = i
 				break
 
-		if(index != -1)
+		if index != -1
 			@bricks.splice(index, 1)
-			save
+			save()
 
 	save: ->
 		console.log @bricks
@@ -46,12 +45,12 @@ class Bricklayer.BrickBin
 		for brick in @bricks
 			partNames += brick.name + "|"
 
-		$.cookie("storedBin", partNames, {expires: 10000})
+		# $.cookie("storedBin", partNames, {expires: 10000})
 
 
-Bricklayer.CreateBin: ->
+CreateBin: () ->
 	Bricklayer.bin = new Bricklayer.BrickBin();
-	loadbin(Bricklayer.bin)
+	loadbin Bricklayer.bin
 
 
 loadbin: (bin) ->
@@ -67,3 +66,4 @@ loadbin: (bin) ->
 			continue
 
 		bin.addBrick(part)
+
