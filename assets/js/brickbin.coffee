@@ -1,6 +1,6 @@
 brickUrl = 'api/v1/brick/'
 
-Bricklayer.BrickBin = 
+Bricklayer.BrickBin =
 class BrickBin
 	constructor: ->
 		@bricks = new Array()
