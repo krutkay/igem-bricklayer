@@ -1,41 +1,51 @@
+brickUrl = 'api/v1/brick/'
 
-class Bricklayer.BrickBin
+Bricklayer.BrickBin = 
+class BrickBin
 	constructor: ->
-		@bricks = []
+		@bricks = new Array()
 
 	addBrick: (brickName) ->
+		console.log "Adding brick"
 
 		for brick in @bricks
 			if brick.name == brickName
 				return
 
+		console.log "Brick not in bin already"
+
 		$.ajax
 			type: "GET"
 			url: brickUrl + brickName
-			success: do(brick) ->
-				(data) ->
-					brick = new BioBrick data
-					@bricks.push brick
+			success: (brick) =>
+				console.log "Got brick"
+				console.log brick
 
-					save()
+				mybrick = new Bricklayer.BioBrick brick
+				console.log mybrick
+				console.log @bricks
+				@bricks.push mybrick
+
+				console.log "Added"
+
+				this.save()
 
 				error: (error) ->
 					console.log error
 
-			
-			
 
 	removeBrick: (brick) ->
 		index = -1
 
-		for brick, i in @bricks
-			if name == brick.name
+		for selBrick, i in @bricks
+			if brick == selBrick.name
 				index = i
 				break
 
 		if index != -1
 			@bricks.splice(index, 1)
-			save()
+			this.save()
+
 
 	save: ->
 		console.log @bricks
@@ -45,25 +55,25 @@ class Bricklayer.BrickBin
 		for brick in @bricks
 			partNames += brick.name + "|"
 
-		# $.cookie("storedBin", partNames, {expires: 10000})
+		$.cookie("storedBin", partNames, {expires: 10000})
 
 
-CreateBin: () ->
-	Bricklayer.bin = new Bricklayer.BrickBin();
-	loadbin Bricklayer.bin
+	load: ->
+		cookie = $.cookie("storedBin")
+
+		if cookie == undefined
+			return
+
+		partNames = cookie.split "|"
+
+		for part in partNames
+			console.log "Part is [" + part + "]"
+			if part == ""
+				continue
+
+			this.addBrick(part)
 
 
-loadbin: (bin) ->
-	cookie = $.cookie("storedBin")
-
-	if cookie == undefined
-		return
-
-	partNames = cookie.split 
-
-	for part of partNames
-		if part == ""
-			continue
-
-		bin.addBrick(part)
-
+# Run at startup
+Bricklayer.bin = new Bricklayer.BrickBin();
+Bricklayer.bin.load()

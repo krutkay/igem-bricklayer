@@ -23,7 +23,7 @@ script#templateResultsRow(type='text/x-handlebars-template')
                 i.icon-heart
                 | {{rating}}/5
         td.text-right
-            a.text-large(href='#') add
+            a.text-large(href='#', onclick="Bricklayer.bin.addBrick('{{name}}')") add
     tr.partExtended(class='toggle-{{name}}')
         td(colspan='6')
             p.description

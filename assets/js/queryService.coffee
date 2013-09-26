@@ -20,7 +20,8 @@ for searchId, url of searches
             e.preventDefault()
             Bricklayer.search url, $(searchId + " :text").val()
 
-class Bricklayer.BioBrick
+Bricklayer.BioBrick =
+class BioBrick
     constructor: (xml) ->
         @xml = $($.parseXML xml)
         @name          = @getContent "part_name"
