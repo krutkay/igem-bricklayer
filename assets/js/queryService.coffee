@@ -67,6 +67,7 @@ displayBricks = (brickList) ->
             success: do (brick) ->
                 (data) ->
                     brick = new BioBrick data
+                    brick.inBin = (Bricklayer.bin.indexOf(brick.name) != -1)
                     BrickResultView = new Bricklayer.AppendView '#results', '#templateResultsRow'
                     BrickResultView.afterRender = ->
                         # attach click handler for dropdown

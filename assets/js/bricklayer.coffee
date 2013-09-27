@@ -37,5 +37,8 @@ HomeView = new View '.content', '#templateSearchFields'
 Bricklayer.ResultsView =
 ResultsView = new View '.content', '#templateSearchResults'
 
+Bricklayer.BinView =
+BinView = new View '.content', '#templateBrickBin'
+
 HeaderView.render {}
 HomeView.render {}

@@ -5,23 +5,27 @@ class BrickBin
 	constructor: ->
 		@bricks = new Array()
 
-	addBrick: (brickName) ->
+	addBrick: (brickName, link) ->
 		console.log "Adding brick"
 
-		for brick in @bricks
-			if brick.name == brickName
-				return
+		console.log "Brickname: [" + brickName + "]"
+		console.log link 
 
-		console.log "Brick not in bin already"
+		if this.indexOf(brickName) != -1
+			if(link != undefined)
+				$('#toggle-bin-' + brickName).text("remove")
+				$('#toggle-bin-' + brickName).on('click', ( -> 
+					Bricklayer.bin.removeBrick(brickName, link)
+				))
+			return
 
 		$.ajax
 			type: "GET"
 			url: brickUrl + brickName
 			success: (brick) =>
-				console.log "Got brick"
-				console.log brick
 
 				mybrick = new Bricklayer.BioBrick brick
+				mybrick.inBin = true
 				console.log mybrick
 				console.log @bricks
 				@bricks.push mybrick
@@ -30,11 +34,34 @@ class BrickBin
 
 				this.save()
 
+				if(link != undefined)
+					$('#toggle-bin-' + brickName).text("remove")
+					$('#toggle-bin-' + brickName).on('click', ( -> 
+						Bricklayer.bin.removeBrick(brickName, link)
+					))
+
 				error: (error) ->
 					console.log error
 
 
-	removeBrick: (brick) ->
+	# addBrick: (brickName) =>
+	# 	addBrick(brickName, null)
+
+
+	removeBrick: (brickName, link) =>
+		index = this.indexOf(brickName)
+
+		if index != -1
+			@bricks.splice(index, 1)
+			this.save()
+
+		if(link != undefined)
+			$('#toggle-bin-' + brickName).text("add")
+			$('#toggle-bin-' + brickName).on('click', ( -> 
+					Bricklayer.bin.addBrick(brickName, link)
+				))
+
+	indexOf: (brick) ->
 		index = -1
 
 		for selBrick, i in @bricks
@@ -42,9 +69,7 @@ class BrickBin
 				index = i
 				break
 
-		if index != -1
-			@bricks.splice(index, 1)
-			this.save()
+		return index
 
 
 	save: ->
@@ -77,3 +102,18 @@ class BrickBin
 # Run at startup
 Bricklayer.bin = new Bricklayer.BrickBin();
 Bricklayer.bin.load()
+
+# Handlebars.registerHelper('if', ((brick, options) ->
+# 	# console.log brick
+# 	# console.log Bricklayer.bin.indexOf(brick)
+# 	# console.log options
+# 	if(Bricklayer.bin.indexOf(brick) != -1)
+# 		options.fn(this)
+# 	else
+# 		options.inverse(this)
+# ))
+
+# Handlebars.registerHelper 'checkBrick', (name) ->
+#      if Bricklayer.bin.indexOf(brickName) == -1 then return false
+#      else 
+#          return true
