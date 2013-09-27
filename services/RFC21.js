@@ -9,16 +9,17 @@ var isCompatible = function(sqnc) {
 		return false;
 	} else if(sqnc.search("GGATCC") !== -1) {
 		return false;
+	} else if(sqnc.search("CTCGAG") !== -1) {
+		var position = sqnc.search("CTCGAG");
+		if(position !== 0){
+			var secondPosition = sqnc.substring(position).search("CTCGAG");
+			if(secondPosition !== 0){
+				console.log("WARNING: the sequence has more than one XhoI site");
+				return false;
+			}
+		}
 	} else {
 		return true;
-	}
-	
-	var position = sqnc.search("CTCGAG");
-	if(position !== 0){
-		var secondPosition = sqnc.substring(position).search("CTCGAG");
-		if(secondPosition !== 0){
-			console.log("WARNING: the sequence has more than one XhoI site");
-		}
 	}
 };
 
@@ -47,7 +48,7 @@ var calculateMeltingTemperature = function(sqnc) {
 	var endingValues = initValues(sqnc.charAt(sqnc.length-1));
 	H = H + startingValues[0] + endingValues[0];
 	S = S + startingValues[1] + endingValues[1];
-	
+
 	// Entropy correction due to  salt dependence
 	S = S + 0.368 * (sqnc.length - 1) * Math.log(0.05); // Default [Na+] = 50 microMolar
 
@@ -142,9 +143,9 @@ var reverseNts = function(sqnc) {
 var generatePrimers = function(sqnc) {
 	var pre = "GAATTCATGAGATCT"; // User needs to specify what kind of spacing for both primers
 	var suf = "CTCGAGTTAGGATCC"; // User needs to indicate whether user wants XhoI site to be in the suffix.
-	
+
 	var bank = [sqnc, reverseNts(sqnc)];
-	
+
 
 	//Calculating for Fp
 	var fp = bank[0].substr(0,10);
@@ -164,12 +165,12 @@ var generatePrimers = function(sqnc) {
 	if(calculateMeltingTemperature(fp) <= 55){
 		console.log("Primers with annealing temperatures in this range cannot be made. Please input a larger temperature range.");
 	}
-	
+
 	// Adding prefix
 	fp = pre + fp;
 
 	console.log("Forward Primer: 5'-" + fp + "-3'");
-	
+
 	//Calculating for Rp
 	var rp = bank[1].substr(0,10);
 	for(var i=10; i<bank[1].length; i++){
@@ -188,10 +189,10 @@ var generatePrimers = function(sqnc) {
 	if(calculateMeltingTemperature(rp) <= 55){
 		console.log("Primers with annealing temperatures in this range cannot be made. Please input a larger temperature range.");
 	}
-	
+
 	// Adding suffix
 	rp = suf + rp;
-	
+
 	console.log("Reverse Primer: 5'-" + rp + "-3'");
 
 	return [fp,rp];
