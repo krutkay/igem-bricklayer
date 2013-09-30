@@ -284,9 +284,9 @@ h6 {
 }
 
 /*=====================================================
- 
+
   Links & Paragraph styles
-  
+
   ======================================================*/
 /* line 58, ../../sass/gumby/_typography.scss */
 p {
@@ -327,7 +327,7 @@ a:hover {
 /*=====================================================
 
   Lists
-  
+
  ======================================================*/
 /* line 90, ../../sass/gumby/_typography.scss */
 ul, ol {
@@ -7108,6 +7108,10 @@ table.rounded > tbody:first-child tr:first-child td {
   background-color: #fcdada;
   border: 1px solid #ee4444;
   padding: 0px 2px;
+}
+
+.label {
+  background: gray;
 }
 
 /* line 32, ../../sass/gumby/custom/_annotation.scss */

@@ -23,7 +23,7 @@ script#templateResultsRow(type='text/x-handlebars-template')
                 i.icon-heart
                 | {{rating}}/5
         td.text-right
-            {{#if inBin}} 
+            {{#if inBin}}
             a.text-large(id='toggle-bin-{{name}}', href='#', onclick="Bricklayer.bin.removeBrick('{{name}}', this)") remove
             {{else}}
             a.text-large(id='toggle-bin-{{name}}', href='#', onclick="Bricklayer.bin.addBrick('{{name}}', this)") add
@@ -33,9 +33,9 @@ script#templateResultsRow(type='text/x-handlebars-template')
             p.description
                 | {{description}}
             p.remarks
-                | Submitted {{dateSubmitted}}
+                | Submitted {{dateEntered}}
                 br
-                a.red(href='{{distributionUrl}}') {{availablility}}
+                a.red(href='{{partUrl}}') {{availablility}}
                 | -
                 span.green {{works}}
                 | -
