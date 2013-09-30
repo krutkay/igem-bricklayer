@@ -41,4 +41,3 @@ Bricklayer.BinView =
 BinView = new View '.content', '#templateBrickBin'
 
 HeaderView.render {}
-HomeView.render {}

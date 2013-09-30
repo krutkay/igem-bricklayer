@@ -13,12 +13,14 @@ searches =
     '#form-superpart-search': '/api/v1/search/superparts'
 
 # Attach event handlers
-for searchId, url of searches
-    # this is a closure around url.
-    $(searchId).submit do (searchId, url) ->
-        (e) ->
-            e.preventDefault()
-            Bricklayer.search url, $(searchId + " :text").val()
+Bricklayer.HomeView.afterRender = ->
+    for searchId, url of searches
+        # this is a closure around url.
+        $(searchId).submit do (searchId, url) ->
+            (e) ->
+                e.preventDefault()
+                Bricklayer.search url, $(searchId + " :text").val()
+Bricklayer.HomeView.render {}
 
 Bricklayer.BioBrick =
 class BioBrick
