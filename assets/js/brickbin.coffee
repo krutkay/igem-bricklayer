@@ -102,18 +102,3 @@ class BrickBin
 # Run at startup
 Bricklayer.bin = new Bricklayer.BrickBin();
 Bricklayer.bin.load()
-
-# Handlebars.registerHelper('if', ((brick, options) ->
-#   # console.log brick
-#   # console.log Bricklayer.bin.indexOf(brick)
-#   # console.log options
-#   if(Bricklayer.bin.indexOf(brick) != -1)
-#       options.fn(this)
-#   else
-#       options.inverse(this)
-# ))
-
-# Handlebars.registerHelper 'checkBrick', (name) ->
-#      if Bricklayer.bin.indexOf(brickName) == -1 then return false
-#      else
-#          return true
