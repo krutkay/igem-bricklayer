@@ -44,7 +44,10 @@ class BioBrick
     getContents: (tagName) ->
         content.data for content in @xml.find(tagName).contents()
 
+Bricklayer.lastSearchTerm = "" # keep track of the last search for displaying purposes
+
 Bricklayer.search = (url, searchTerms) ->
+    Bricklayer.lastSearchTerm = searchTerms
     console.log "Doing search!"
     $.ajax
         type: "GET"
@@ -61,7 +64,10 @@ Bricklayer.search = (url, searchTerms) ->
 # Step 2: Fetch full information for each brick, one by one
 displayBricks = (brickList) ->
     bricks = []
-    Bricklayer.ResultsView.render {}
+    Bricklayer.ResultsView.render {
+        searchTerm: "'" + Bricklayer.lastSearchTerm + "'" # ugly way to get quotes to show up
+        numResults: brickList.length
+    }
     for brick in brickList
         $.ajax
             type: "GET"

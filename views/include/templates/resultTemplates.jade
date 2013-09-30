@@ -43,11 +43,11 @@ script#templateResultsRow(type='text/x-handlebars-template')
 
 script#templateSearchResults(type='text/x-handlebars-template')
     .row
-        h2.search-title search: 'awesome'
+        h2.search-title search: {{searchTerm}}
     //- Search info bar
     .row
         .six.columns
-            | 4 results, page 1 of 1
+            | {{numResults}} results
         .six.columns.text-right
             | Sort by
             .field.picker
