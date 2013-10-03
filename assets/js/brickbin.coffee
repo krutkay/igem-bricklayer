@@ -6,11 +6,6 @@ class BrickBin
         @bricks = new Array()
 
     addBrick: (brickName, link) ->
-        console.log "Adding brick"
-
-        console.log "Brickname: [" + brickName + "]"
-        console.log link
-
         if this.indexOf(brickName) != -1
             if(link != undefined)
                 $('#toggle-bin-' + brickName).text("remove")
@@ -26,11 +21,7 @@ class BrickBin
 
                 mybrick = new Bricklayer.BioBrick brick
                 mybrick.inBin = true
-                console.log mybrick
-                console.log @bricks
                 @bricks.push mybrick
-
-                console.log "Added"
 
                 this.save()
 
@@ -73,8 +64,6 @@ class BrickBin
 
 
     save: ->
-        console.log @bricks
-
         partNames = ""
 
         for brick in @bricks
@@ -92,7 +81,6 @@ class BrickBin
         partNames = cookie.split "|"
 
         for part in partNames
-            console.log "Part is [" + part + "]"
             if part == ""
                 continue
 
