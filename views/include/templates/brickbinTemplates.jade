@@ -1,78 +1,75 @@
 script#templateBrickBin(type='text/x-handlebars-template')
-	.row
-		h2 Your Brick Bin
-	//- Search info bar
-	{{#if bricks.length}}
-	.row
-		.six.columns
-			| {{bricks.length}} bricks
-	//- Search results
-	.row
-		table#searchResultsTable
-			//- Sorting columns
-			thead
-				td
-					a(href='#')
-						| Part ID
-						i.icon-up-dir
-				td
-					a(href='#') Type
-				td
-					a(href='#') Length
-				td Assembly
-				td
-					a(href='#') Reviews
-				td
-			//- Part
-			tbody#results
-				{{#each bricks}}
-				tr(data-part='{{name}}')
-					td
-						a.text-large.part-header(class='toggle-{{name}}', href='#')
-							i.icon-right-open.resultIcon
-							| {{name}}
-					td
-						span.label(class='{{type}}') {{type}}
-					td
-						span {{length}} bp
-					td
-						span
-							span(class='rfc-yes') 10
-							span(class='rfc-yes') 12
-							span(class='rfc-yes') 21
-							span(class='rfc-no') 22
-							span(class='rfc-no') 25
-							span(class='rfc-yes') 1000
-					td
-						span
-							i.icon-star
-							| {{stars}}
-							i.icon-heart
-							| {{rating}}/5
-					td.text-right
-						a.text-large(id='toggle-bin-{{name}}', href='#', onclick="Bricklayer.bin.removeBrick('{{name}}', this)") remove
-				tr.partExtended(class='toggle-{{name}}')
-					td(colspan='6')
-						p.description
-							| {{description}}
-						p.remarks
-							| Submitted {{dateSubmitted}}
-							br
-							a.red(href='{{distributionUrl}}') {{availablility}}
-							| -
-							span.green {{works}}
-							| -
-							| {{numUses}} uses
-				{{/each}}
+    .row
+        h2 Your Brick Bin
+    //- Search info bar
+    {{#if bricks.length}}
+    .row
+        .six.columns
+            | {{bricks.length}} bricks
+    //- Search results
+    .row
+        table#searchResultsTable
+            //- Sorting columns
+            thead
+                td
+                    a(href='#')
+                        | Part ID
+                        i.icon-up-dir
+                td
+                    a(href='#') Type
+                td
+                    a(href='#') Length
+                td Assembly
+                td
+                    a(href='#') Reviews
+                td
+            //- Part
+            tbody#results
+                {{#each bricks}}
+                tr(data-part='{{name}}')
+                    td
+                        a.text-large.part-header(class='toggle-{{name}}', href='#')
+                            i.icon-right-open.resultIcon
+                            | {{name}}
+                    td
+                        span.label(class='{{type}}') {{type}}
+                    td
+                        span {{length}} bp
+                    td
+                        span
+                            {{#each compatibility}}
+                            span(class='rfc-{{this}}') {{@key}}
+                            {{/each}}
+                    td
+                        span
+                            i.icon-star
+                            | {{stars}}
+                            i.icon-heart
+                            | {{rating}}/5
+                    td.text-right
+                        a.text-large(id='toggle-bin-{{name}}', href='#', onclick="Bricklayer.bin.removeBrick('{{name}}', this)") remove
+                tr.partExtended(class='toggle-{{name}}')
+                    td(colspan='6')
+                        p.description
+                            | {{description}}
+                        p.remarks
+                            | Submitted {{dateSubmitted}}
+                            br
+                            a.red(href='{{distributionUrl}}') {{availablility}}
+                            | -
+                            span.green {{works}}
+                            | -
+                            | {{numUses}} uses
+                {{/each}}
 
-			//- Important! This row prevents odd layout changes when parts are shown.
-			tfoot
-				tr
-					td(colspan='6', style='width: 100%; height: 1px; padding: 0px;')
+            //- Important! This row prevents odd layout changes when parts are shown.
+            tfoot
+                tr
+                    td(colspan='6', style='width: 100%; height: 1px; padding: 0px;')
 
-	{{else}}
-	.row 
-		You have no bricks in your bin.  Maybe you would like to 
-		a(href="#", onclick="Bricklayer.HomeView.render()") search
-		?
-	{{/if}}
+    {{else}}
+    .row
+        You have no bricks in your bin.  Maybe you would like to
+        a(href="#", onclick="Bricklayer.HomeView.render()") search
+        ?
+    {{/if}}

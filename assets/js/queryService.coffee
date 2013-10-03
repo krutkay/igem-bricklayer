@@ -40,6 +40,10 @@ class BioBrick
 
         @length = @sequence.length
 
+        @compatibility = {}
+        for RFC in Bricklayer.RFCs
+            @compatibility[RFC] = if Bricklayer.RFCService[RFC].isCompatible @sequence then 'yes' else 'no'
+
     getContent: (tagName) ->
         @xml.find(tagName).contents()[0]?.data
 

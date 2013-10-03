@@ -10,12 +10,9 @@ script#templateResultsRow(type='text/x-handlebars-template')
             span {{length}} bp
         td
             span
-                span(class='rfc-yes') 10
-                span(class='rfc-yes') 12
-                span(class='rfc-yes') 21
-                span(class='rfc-no') 22
-                span(class='rfc-no') 25
-                span(class='rfc-yes') 1000
+                {{#each compatibility}}
+                span(class='rfc-{{this}}') {{@key}}
+                {{/each}}
         td
             span
                 i.icon-star

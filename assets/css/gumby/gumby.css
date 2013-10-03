@@ -7098,16 +7098,20 @@ table.rounded > tbody:first-child tr:first-child td {
 
 /* line 10, ../../sass/gumby/custom/_annotation.scss */
 .rfc-yes {
-  background-color: #cafbca;
-  border: 1px solid #33ee33;
+  background-color: #C0FFC0;
+  border: 1px solid #0f0;
+  border-radius: 3px;
   padding: 0px 2px;
+  margin-right: 3px;
 }
 
 /* line 16, ../../sass/gumby/custom/_annotation.scss */
 .rfc-no {
   background-color: #fcdada;
-  border: 1px solid #ee4444;
+  border: 1px solid #f00;
+  border-radius: 3px;
   padding: 0px 2px;
+  margin-right: 3px;
 }
 
 .label {
