@@ -2,6 +2,7 @@
   ------- Check RFC compatibility -------
   ---------------------------------------*/
 
+// Also checks RFC23
 var isCompatible10 = function(sqnc) {
     if(sqnc.search("GAATTC") !== -1) {
         return false;
@@ -119,18 +120,17 @@ var reverseNts = function(sqnc) {
 /*-----------------------------
   ------- Fp's and Rp's -------
   -----------------------------*/
-var primers10 = ["GAATTCGCGGCCGCTTCTAGAG","GAATTCGCGGCCGCTTCTAG","CTGCAGCGGCCGCTACTAGTA"];
-var primers12 = ["GAATTCGCGGCCGCACTAGT","","CTGCAGCGGCCGCGCTAGC"];
-var primers21 = ["GAATTCATGAGATCT","CTCGAGTTAGGATCC"];
-var primers23 = ["GAATTCGCGGCCGCTTCTAGA","CTGCAGCGGCCGCTACTAGT"];
-var primers25 = ["GAATTCGCGGCCGCTTCTAGATGGCCGGC","CTGCAGCGGCCGCTACTAGTATTAACCGGT"];
-
 var findPrimers = function(sqnc, methodNum, isCoding){
+    var primers10 = ["GAATTCGCGGCCGCTTCTAGAG","GAATTCGCGGCCGCTTCTAG","CTGCAGCGGCCGCTACTAGTA"];
+    var primers12 = ["GAATTCGCGGCCGCACTAGT","","CTGCAGCGGCCGCGCTAGC"];
+    var primers21 = ["GAATTCATGAGATCT","CTCGAGTTAGGATCC"];
+    var primers23 = ["GAATTCGCGGCCGCTTCTAGA","CTGCAGCGGCCGCTACTAGT"];
+    var primers25 = ["GAATTCGCGGCCGCTTCTAGATGGCCGGC","CTGCAGCGGCCGCTACTAGTATTAACCGGT"];
     var primers = ["",""];
     switch(methodNum){
         case "10" || "RFC10":
-            if(!RFC10){
-                alert("Part is not compatible with RFC 10");
+            if(!isCompatible10(sqnc)){
+                console.log("Part is not compatible with RFC 10");
                 break;
             } else {
                 if(isCoding){
@@ -141,32 +141,32 @@ var findPrimers = function(sqnc, methodNum, isCoding){
                 break;
             }
         case "12" || "RFC12":
-            if(!RFC12){
-                alert("Part is not compatible with RFC 12");
+            if(!isCompatible12(sqnc)){
+                console.log("Part is not compatible with RFC 12");
                 break;
             } else {
                 primers = getPrimer(sqnc,primers12,0);
                 break;
             }
         case "21" || "RFC21":
-            if(!RFC21){
-                alert("Part is not compatible with RFC 21");
+            if(!isCompatible21(sqnc)){
+                console.log("Part is not compatible with RFC 21");
                 break;
             } else {
                 primers = getPrimer(sqnc,primers21);
                 break;
             }
         case "23" || "RFC23":
-            if(!RFC10){
-                alert("Part is not compatible with RFC 23");
+            if(!isCompatible10(sqnc)){
+                console.log("Part is not compatible with RFC 23");
                 break;
             } else {
                 primers = getPrimer(sqnc,primers23);
                 break;
             }
         case "25" || "RFC25":
-            if(!RFC25){
-                alert("Part is not compatible with RFC 25");
+            if(!isCompatible25(sqnc)){
+                console.log("Part is not compatible with RFC 25");
                 break;
             } else {
                 primers = getPrimer(sqnc,primers25);
