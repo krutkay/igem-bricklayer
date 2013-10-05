@@ -54,7 +54,7 @@ Bricklayer.lastSearchTerm = "" # keep track of the last search for displaying pu
 
 Bricklayer.search = (url, searchTerms) ->
     Bricklayer.lastSearchTerm = searchTerms
-    console.log "Doing search!"
+    console.log "Doing search for #{searchTerms}!"
     $.ajax
         type: "GET"
         url: url
@@ -62,6 +62,7 @@ Bricklayer.search = (url, searchTerms) ->
             searchTerms: searchTerms
         success: (data) ->
             # The data here is an array of biobrick names
+            console.log "Parts list recieved from server\n #{data}.\n Displaying..."
             displayBricks data
         error: (error) ->
             console.log error

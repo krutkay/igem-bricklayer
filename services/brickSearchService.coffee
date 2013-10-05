@@ -36,12 +36,17 @@ getQueryUrl = (textInput, submitButton, searchString) ->
 search = (req, res) ->
     path = req.route.path
     searchTerms = req.query.searchTerms
+    console.log "Searching..."
+    console.log "path: " + path
+    console.log "searchTerms: " + searchTerms
     # callback
     done = (error, response, body) ->
         if error then res.send 404, error
         # The response from partsregistry is the full HTML page.
         # Parse the page and get a list of parts.
+        console.log "Recieved page response from partsregistry, parsing for biobricks..."
         parts = parser.parseListFromPage body
+        console.log "Parsed parts!"
         res.send 200, parts
 
     if path is routes.text
