@@ -44,9 +44,9 @@ search = (req, res) ->
         if error then res.send 404, error
         # The response from partsregistry is the full HTML page.
         # Parse the page and get a list of parts.
-        console.log "Recieved page response from partsregistry, parsing for biobricks..."
+        console.log "Recieved page response length: #{body.length} from partsregistry, parsing for biobricks..."
         parts = parser.parseListFromPage body
-        console.log "Parsed parts!"
+        console.log "Parsed parts! There are #{parts.length} parts:\n#{parts}"
         res.send 200, parts
 
     if path is routes.text
