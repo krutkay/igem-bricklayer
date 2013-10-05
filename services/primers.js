@@ -125,7 +125,7 @@ var primers21 = ["GAATTCATGAGATCT","CTCGAGTTAGGATCC"];
 var primers23 = ["GAATTCGCGGCCGCTTCTAGA","CTGCAGCGGCCGCTACTAGT"];
 var primers25 = ["GAATTCGCGGCCGCTTCTAGATGGCCGGC","CTGCAGCGGCCGCTACTAGTATTAACCGGT"];
 
-var findPrimers = function(sqnc, methodNum){
+var findPrimers = function(sqnc, methodNum, isCoding){
     var primers = ["",""];
     switch(methodNum){
         case "10" || "RFC10":
@@ -133,9 +133,7 @@ var findPrimers = function(sqnc, methodNum){
                 alert("Part is not compatible with RFC 10");
                 break;
             } else {
-                var code = prompt("Is this part non-coding? (yes/no)");
-                code.toLowerCase();
-                if(code === "yes"){
+                if(isCoding){
                     primers = getPrimer(sqnc,primers10,1);
                 } else {
                     primers = getPrimer(sqnc,primers10,0);
@@ -232,6 +230,9 @@ var browserUI = function() {
     var RFC12 = isCompatible12(sequence);
     var RFC21 = isCompatible21(sequence);
     var RFC25 = isCompatible25(sequence);
+    var isCoding = prompt("Is this part non-coding? (yes/no)");
+    isCoding.toLowerCase();
+    isCoding = (isCoding === 'yes') ? true : false;
 
     console.log("BioBrick: " + name);
     console.log("Title: " + title);
@@ -266,10 +267,12 @@ var browserUI = function() {
         }
     } while (true);
 
-    var primers = findPrimers(sequence,answer);
+    var primers = findPrimers(sequence,answer, isCoding);
     console.log("Forward primer: " + primers[0]);
     console.log("Reverse primer: " + primers[1]);
 };
 
 exports.countNts = countNts;
 exports.reverseNts = reverseNts;
+exports.findPrimers = findPrimers;
+exports.getPrimer = getPrimer;
