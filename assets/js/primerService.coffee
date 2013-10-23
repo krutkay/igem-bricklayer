@@ -20,17 +20,19 @@
 # ComplimentOfReverse = GATCTCTAGG
 # Primer = GATCT
 
+reverse = (s) -> s.split("").reverse().join("")
+
 # Figures out the primer needed to combine two DNA parts
 # The primer is a sequence that has the ending of partA and the beginning of partB.
 # The first part of the primer (the head) is made from the end of the sequence from partA.
 # the last part of the primer (the tail) is made from the beginning of the sequence from partB.
-# Each part of the primer, the head and the tail, needs to have a melting temperature in the range of 50-60 degrees celsius.
+# Each part of the primer, the head and tail, needs to have a melting temperature in the range of 50-60 degrees celsius.
 # The ideal temperature is the midpoint, so we want primers with a melting temperature of 55 degrees celsius.
 # The melting temperature of the primer changes as you make the primer longer.
 getPrimerBetween = (partA, partB, minTemp=50, maxTemp=60) ->
     # The head of the primer is the ending of partA.
     # Start from the end of the partA and go backwards until the melting temperature is right.
-    lengthOfPrimerHead = getLengthOfSubsequenceByTemp partA.split("").reverse().join(""), minTemp, maxTemp
+    lengthOfPrimerHead = getLengthOfSubsequenceByTemp reverse(partA), minTemp, maxTemp
     lengthOfPrimerTail = getLengthOfSubsequenceByTemp partB, minTemp, maxTemp
     console.log "Length of Head: " + lengthOfPrimerHead
     console.log "Length of Tail: " + lengthOfPrimerTail
@@ -45,6 +47,7 @@ getPrimerBetween = (partA, partB, minTemp=50, maxTemp=60) ->
 # I think this function needs a better name
 getLengthOfSubsequenceByTemp = (sequence, minTemp, maxTemp) ->
     return -1 if minTemp > maxTemp
+    sequence = sequence.toUpperCase()
     idealTemp = (minTemp + maxTemp) / 2
     lastDifference = null
 
@@ -66,25 +69,62 @@ getLengthOfSubsequenceByTemp = (sequence, minTemp, maxTemp) ->
 
 # Takes a DNA sequence and counts the number of each nucleotide. Returns an hash of nucleotide: count
 getNucleotideCounts = (sequence) ->
+    sequence = sequence.toUpperCase()
     counts =
         'A': 0
         'T': 0
         'C': 0
         'G': 0
-    sequence = sequence.toUpperCase()
     for nucleotide, count in sequence
         counts[nucleotide]++
     counts
 
+# returns the complement of the DNA sequence
+# The complement of A is T (and vice-versa)
+# The complement of G is C (and vice-versa)
+getComplement = (sequence) ->
+    sequence = sequence.toUpperCase()
+    sequence = sequence.replace(/A/g,"X");
+    sequence = sequence.replace(/T/g,"A");
+    sequence = sequence.replace(/X/g,"T");
+    sequence = sequence.replace(/G/g,"X");
+    sequence = sequence.replace(/C/g,"G");
+    sequence = sequence.replace(/X/g,"C");
+    return sequence
+
 # Returns the melting temperature (in Celsius) of a DNA sequence.
 # This formula sometimes spits out negative if the sequence is too short. I dunno
 getMeltingTemperature = (sequence) ->
+    sequence = sequence.toUpperCase()
     nucleotides = getNucleotideCounts sequence
     return (64.9 + (41 * (nucleotides.G + nucleotides.C - 16.4) / sequence.length))
 
-partA = 'ACTATCGTAGCTATATAGCTATATACGATCGATGCTAGCTAGCTAGCTAGCTAGCTATCGCTAGCTAGCATGCTAGCTAGCTAGCTATATATAGTTCGATGACTTTC'
-partB = 'CTAGCTACTAGCTAGCTAGTCGGCGCGTAGCTAGCTAGCTAGCTATATGCTACGAGCGATCGATCGTAGCTAGCTACGTAGCTGACTGATCGTAGCTAGCTAGCAT'
+getPrimersForConstruct = (construct, minTemp, maxTemp) ->
+    primers = []
+    for sequence, i in construct
+        leftPart = sequence
+        rightPart = construct[i + 1]
+        if rightPart
+            primers.push getPrimerBetween(leftPart, rightPart, minTemp, maxTemp)
+        else if not rightPart
+            endingSequence = getComplement reverse(leftPart)
+            length = getLengthOfSubsequenceByTemp endingSequence, minTemp, maxTemp
+            primers.push endingSequence.substring(0, length)
+    primers
 
-console.log "Part A: #{partA}"
-console.log "Part B: #{partB}"
-console.log "Primer to link A and B: #{getPrimerBetween(partA, partB)}"
+# #######
+# Example of Primer between two parts
+
+# partA = 'ACTATCGTAGCTATATAGCTATATACGATCGATGCTAGCTAGCTAGCTAGCTAGCTATCGCTAGCTAGCATGCTAGCTAGCTAGCTATATATAGTTCGATGACTTTC'
+# partB = 'CTAGCTACTAGCTAGCTAGTCGGCGCGTAGCTAGCTAGCTAGCTATATGCTACGAGCGATCGATCGTAGCTAGCTACGTAGCTGACTGATCGTAGCTAGCTAGCAT'
+
+# console.log "Part A: #{partA}"
+# console.log "Part B: #{partB}"
+# console.log "Primer to link A and B: #{getPrimerBetween(partA, partB)}"
+# #######
+
+construct = ['ATGAATGCGCT', 'GGTCATGCTAA', 'AGTCATTAGGTA', 'AGTGTCCGGATA', 'ACGCGGCTAAT', 'GGTAACAGAATC']
+minTemp = 50
+maxTemp = 60
+
+console.log getPrimersForConstruct construct, minTemp, maxTemp
