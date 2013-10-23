@@ -20,34 +20,44 @@
 # ComplimentOfReverse = GATCTCTAGG
 # Primer = GATCT
 
-partA = 'ACTTTG'
-partB = 'CTAGCC'
-
 # Figures out the primer needed to combine two DNA parts
+# The primer is a sequence that has the ending of partA and the beginning of partB.
 # The first part of the primer (the head) is made from the end of the sequence from partA.
 # the last part of the primer (the tail) is made from the beginning of the sequence from partB.
 # Each part of the primer, the head and the tail, needs to have a melting temperature in the range of 50-60 degrees celsius.
 # The ideal temperature is the midpoint, so we want primers with a melting temperature of 55 degrees celsius.
-getPrimerBetween = (partA, partB) ->
-    lengthOfPrimerHead = getLengthOfTemperatureDefinedSequence partA, 50, 60
-    lengthOfPrimerTail = getLengthOfTemperatureDefinedSequence partB, 50, 60
-    return partA.substring(partA.length - lengthOfPrimerHead) + partB.substring(0, lengthOfPrimerTail)
+# The melting temperature of the primer changes as you make the primer longer.
+getPrimerBetween = (partA, partB, minTemp=50, maxTemp=60) ->
+    # The head of the primer is the ending of partA.
+    # Start from the end of the partA and go backwards until the melting temperature is right.
+    lengthOfPrimerHead = getLengthOfSubsequenceByTemp partA.split("").reverse().join(""), minTemp, maxTemp
+    lengthOfPrimerTail = getLengthOfSubsequenceByTemp partB, minTemp, maxTemp
+    console.log "Length of Head: " + lengthOfPrimerHead
+    console.log "Length of Tail: " + lengthOfPrimerTail
+    primerHead = partA.substring(partA.length - lengthOfPrimerHead)
+    primerTail = partB.substring(0, lengthOfPrimerTail)
+    console.log "Primer Head: " + primerHead
+    console.log "Primer Tail: " + primerTail
+    return primerHead + primerTail
 
 # Takes a sequence and returns the length of a subsequence, starting from the beginning,
 # whose melting temperature is closest to the midpoint of the minimum and maximum given melting temperatures.
 # I think this function needs a better name
-getLengthOfTemperatureDefinedSequence = (sequence, minTemp, maxTemp) ->
+getLengthOfSubsequenceByTemp = (sequence, minTemp, maxTemp) ->
     return -1 if minTemp > maxTemp
     idealTemp = (minTemp + maxTemp) / 2
-    lastDifference = -1
+    lastDifference = null
 
     for _, i in sequence
-        meltingTemp = getMeltingTemperature sequence.substring(0, i+1)
+        subsequence = sequence.substring(0, i+1)
+        meltingTemp = getMeltingTemperature subsequence
         differenceFromIdeal = Math.abs(meltingTemp - idealTemp)
         # Realize that the difference will get smaller until you reach the ideal temperature. Then it will get bigger.
         # The previous length is the one with the ideal melting temperature for the given range.
-        if differenceFromIdeal > lastDifference
-            return i # i, because the length of the current subsequence is i+1. we want the last one.
+        console.log "Melting temperature of: " + subsequence + " is " + meltingTemp
+        if lastDifference and differenceFromIdeal > lastDifference
+            console.log "Using length of previous subsequence... Length: #{subsequence.length - 1}"
+            return subsequence.length - 1 # because we want the length of the previous subsequence, which is one less.
         else
             lastDifference = differenceFromIdeal
     # return the whole sequence if we run out of subsequences.
@@ -71,3 +81,10 @@ getNucleotideCounts = (sequence) ->
 getMeltingTemperature = (sequence) ->
     nucleotides = getNucleotideCounts sequence
     return (64.9 + (41 * (nucleotides.G + nucleotides.C - 16.4) / sequence.length))
+
+partA = 'ACTATCGTAGCTATATAGCTATATACGATCGATGCTAGCTAGCTAGCTAGCTAGCTATCGCTAGCTAGCATGCTAGCTAGCTAGCTATATATAGTTCGATGACTTTC'
+partB = 'CTAGCTACTAGCTAGCTAGTCGGCGCGTAGCTAGCTAGCTAGCTATATGCTACGAGCGATCGATCGTAGCTAGCTACGTAGCTGACTGATCGTAGCTAGCTAGCAT'
+
+console.log "Part A: #{partA}"
+console.log "Part B: #{partB}"
+console.log "Primer to link A and B: #{getPrimerBetween(partA, partB)}"
