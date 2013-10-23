@@ -104,9 +104,15 @@ getPrimersForConstruct = (construct, minTemp, maxTemp) ->
     for sequence, i in construct
         leftPart = sequence
         rightPart = construct[i + 1]
+
+        # get a regular forward primer for the first part
+        if i is 0
+            length = getLengthOfSubsequenceByTemp sequence, minTemp, maxTemp
+            primers.push sequence.substring(0, length)
+
         if rightPart
             primers.push getPrimerBetween(leftPart, rightPart, minTemp, maxTemp)
-        else if not rightPart
+        else if not rightPart # get a reverse complement primer for the last part
             endingSequence = getComplement reverse(leftPart)
             length = getLengthOfSubsequenceByTemp endingSequence, minTemp, maxTemp
             primers.push endingSequence.substring(0, length)
@@ -123,7 +129,15 @@ getPrimersForConstruct = (construct, minTemp, maxTemp) ->
 # console.log "Primer to link A and B: #{getPrimerBetween(partA, partB)}"
 # #######
 
-construct = ['ATGAATGCGCT', 'GGTCATGCTAA', 'AGTCATTAGGTA', 'AGTGTCCGGATA', 'ACGCGGCTAAT', 'GGTAACAGAATC']
+construct = [
+    'ATCTGTATACTGTATGCTACTATATCGATGAATGCGCT',
+    'GGTCATCCGCTAGTCGATGTCAGTTAGATAGCACACGCTAA',
+    'AGTCAAGGACTAGCCATGAAACACAGAGTATACATGACATTAGGTA',
+    'AGTGTCACAGTGTCAGTGTAGTCGTGACACCCGGATA',
+    'ACGAGTGTGTAGCTGGGTCAGGATTTATACGGCTAAT',
+    'GGCACGGCCTATTAGCGCTACTACGACGACGACGGGCATCATCATTAACAGAATC'
+]
+
 minTemp = 50
 maxTemp = 60
 
