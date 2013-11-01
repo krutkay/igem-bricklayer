@@ -44,4 +44,3 @@ Bricklayer.PrimerView =
 PrimerView = new View '.content', '#templatePrimers'
 
 HeaderView.render {}
-HomeView.render {}
