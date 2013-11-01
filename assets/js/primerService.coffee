@@ -20,6 +20,9 @@
 # ComplimentOfReverse = GATCTCTAGG
 # Primer = GATCT
 
+# namespace
+Bricklayer.Primers = {}
+
 reverse = (s) -> s.split("").reverse().join("")
 
 # Figures out the primer needed to combine two DNA parts
@@ -29,17 +32,14 @@ reverse = (s) -> s.split("").reverse().join("")
 # Each part of the primer, the head and tail, needs to have a melting temperature in the range of 50-60 degrees celsius.
 # The ideal temperature is the midpoint, so we want primers with a melting temperature of 55 degrees celsius.
 # The melting temperature of the primer changes as you make the primer longer.
+Bricklayer.Primers.getPrimerBetween =
 getPrimerBetween = (partA, partB, minTemp=50, maxTemp=60) ->
     # The head of the primer is the ending of partA.
     # Start from the end of the partA and go backwards until the melting temperature is right.
     lengthOfPrimerHead = getLengthOfSubsequenceByTemp reverse(partA), minTemp, maxTemp
     lengthOfPrimerTail = getLengthOfSubsequenceByTemp partB, minTemp, maxTemp
-    console.log "Length of Head: " + lengthOfPrimerHead
-    console.log "Length of Tail: " + lengthOfPrimerTail
     primerHead = partA.substring(partA.length - lengthOfPrimerHead)
     primerTail = partB.substring(0, lengthOfPrimerTail)
-    console.log "Primer Head: " + primerHead
-    console.log "Primer Tail: " + primerTail
     return primerHead + primerTail
 
 # Takes a sequence and returns the length of a subsequence, starting from the beginning,
@@ -57,9 +57,7 @@ getLengthOfSubsequenceByTemp = (sequence, minTemp, maxTemp) ->
         differenceFromIdeal = Math.abs(meltingTemp - idealTemp)
         # Realize that the difference will get smaller until you reach the ideal temperature. Then it will get bigger.
         # The previous length is the one with the ideal melting temperature for the given range.
-        console.log "Melting temperature of: " + subsequence + " is " + meltingTemp
         if lastDifference and differenceFromIdeal > lastDifference
-            console.log "Using length of previous subsequence... Length: #{subsequence.length - 1}"
             return subsequence.length - 1 # because we want the length of the previous subsequence, which is one less.
         else
             lastDifference = differenceFromIdeal
@@ -94,11 +92,13 @@ getComplement = (sequence) ->
 
 # Returns the melting temperature (in Celsius) of a DNA sequence.
 # This formula sometimes spits out negative if the sequence is too short. I dunno
+# valid for 17 bp to 50bp
 getMeltingTemperature = (sequence) ->
     sequence = sequence.toUpperCase()
     nucleotides = getNucleotideCounts sequence
     return (64.9 + (41 * (nucleotides.G + nucleotides.C - 16.4) / sequence.length))
 
+Bricklayer.Primers.getPrimersForConstruct =
 getPrimersForConstruct = (construct, minTemp, maxTemp) ->
     primers = []
     for sequence, i in construct
@@ -129,16 +129,19 @@ getPrimersForConstruct = (construct, minTemp, maxTemp) ->
 # console.log "Primer to link A and B: #{getPrimerBetween(partA, partB)}"
 # #######
 
-construct = [
-    'ATCTGTATACTGTATGCTACTATATCGATGAATGCGCT',
-    'GGTCATCCGCTAGTCGATGTCAGTTAGATAGCACACGCTAA',
-    'AGTCAAGGACTAGCCATGAAACACAGAGTATACATGACATTAGGTA',
-    'AGTGTCACAGTGTCAGTGTAGTCGTGACACCCGGATA',
-    'ACGAGTGTGTAGCTGGGTCAGGATTTATACGGCTAAT',
-    'GGCACGGCCTATTAGCGCTACTACGACGACGACGGGCATCATCATTAACAGAATC'
-]
+# #######
+# Example of generating primers for construct
+# construct = [
+#     'ATCTGTATACTGTATGCTACTATATCGATGAATGCGCT',
+#     'GGTCATCCGCTAGTCGATGTCAGTTAGATAGCACACGCTAA',
+#     'AGTCAAGGACTAGCCATGAAACACAGAGTATACATGACATTAGGTA',
+#     'AGTGTCACAGTGTCAGTGTAGTCGTGACACCCGGATA',
+#     'ACGAGTGTGTAGCTGGGTCAGGATTTATACGGCTAAT',
+#     'GGCACGGCCTATTAGCGCTACTACGACGACGACGGGCATCATCATTAACAGAATC'
+# ]
 
-minTemp = 50
-maxTemp = 60
+# minTemp = 50
+# maxTemp = 60
 
-console.log getPrimersForConstruct construct, minTemp, maxTemp
+# console.log getPrimersForConstruct construct, minTemp, maxTemp
+# #######
