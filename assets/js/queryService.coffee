@@ -82,8 +82,8 @@ displayBricks = (brickList) ->
                 (data) ->
                     brick = new BioBrick data
                     brick.inBin = (Bricklayer.bin.indexOf(brick.name) != -1)
-                    BrickResultView = new Bricklayer.AppendView '#results', '#templateResultsRow'
-                    BrickResultView.afterRender = ->
+                    BrickRowResultView = new Bricklayer.AppendView '#results', '#templateResultsRow'
+                    BrickRowResultView.afterRender = ->
                         # attach click handler for dropdown
                         $('a.toggle-' + brick.name).click (e) ->
                             e.preventDefault()
@@ -98,7 +98,7 @@ displayBricks = (brickList) ->
                                 extended.hide()
                                 icon.toggleClass("icon-right-open").toggleClass "icon-down-open"
 
-                    BrickResultView.render brick
+                    BrickRowResultView.render brick
                     bricks.push brick
             error: (error) ->
                 console.log error

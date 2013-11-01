@@ -1,0 +1,18 @@
+script#templateSequenceEntry(type='text/x-handlebars-template')
+    textarea.sequence
+
+script#templatePrimers(type='text/x-handlebars-template')
+    .row
+        h1 Generate Primers
+    .row
+        span
+            | Enter a sequence or select a  BioBrick from the Brick Bin in the dropdown
+    .row#sequenceEntries
+    .row.buttonrow
+        //- WE'RE BRINGING CENTER BACK
+        center
+            .medium.primary.btn
+                input#addSequence(type='button', value='Add part to sequence')
+            .medium.secondary.btn
+                input#generatePrimers(type='button', value='Generate primers')
+

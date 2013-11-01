@@ -118,6 +118,15 @@ getPrimersForConstruct = (construct, minTemp, maxTemp) ->
             primers.push endingSequence.substring(0, length)
     primers
 
+addSequence = (context) ->
+    SequenceEntryView = new Bricklayer.AppendView '#sequenceEntries', '#templateSequenceEntry'
+    SequenceEntryView.render context
+
+# Add a blank sequence
+addSequence {}
+$('#addSequence').click (e) ->
+    addSequence {}
+
 # #######
 # Example of Primer between two parts
 
