@@ -67,6 +67,9 @@ Bricklayer.search = (url, searchTerms) ->
         error: (error) ->
             console.log error
 
+Bricklayer.BrickRowResultView =
+BrickRowResultView = new Bricklayer.AppendView '#results', '#templateResultsRow'
+
 # Step 1: Start rendering of a table
 # Step 2: Fetch full information for each brick, one by one
 displayBricks = (brickList) ->
@@ -83,7 +86,6 @@ displayBricks = (brickList) ->
                 (data) ->
                     brick = new BioBrick data
                     brick.inBin = (Bricklayer.bin.indexOf(brick.name) != -1)
-                    BrickRowResultView = new Bricklayer.AppendView '#results', '#templateResultsRow'
                     BrickRowResultView.afterRender = ->
                         # attach click handler for dropdown
                         $('a.toggle-' + brick.name).click (e) ->

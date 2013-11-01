@@ -118,14 +118,34 @@ getPrimersForConstruct = (construct, minTemp, maxTemp) ->
             primers.push endingSequence.substring(0, length)
     primers
 
+Bricklayer.SequenceEntryView =
+SequenceEntryView = new Bricklayer.AppendView '#sequenceEntries', '#templateSequenceEntry'
+
 addSequence = (context) ->
-    SequenceEntryView = new Bricklayer.AppendView '#sequenceEntries', '#templateSequenceEntry'
     SequenceEntryView.render context
 
+displayPrimers = (primers) ->
+    console.log "Displaying primers..."
+    console.log primers
+    for primer, i in primers
+        console.log i + ", " + primer
+
 # Add a blank sequence
-addSequence {}
-$('#addSequence').click (e) ->
+Bricklayer.PrimerView.afterRender = ->
     addSequence {}
+    $('#addSequence').click (e) ->
+        addSequence {}
+    $('#generatePrimers').click (e) ->
+        construct = []
+        textareas = $(SequenceEntryView.selector + ' textarea').each (i, element) ->
+            construct.push $(element).val().toUpperCase()
+
+        primers = getPrimersForConstruct construct, 50, 60
+        displayPrimers primers
+
+
+# temporarily skip the home page and go to the generate page. this is a reason for routes
+Bricklayer.PrimerView.render()
 
 # #######
 # Example of Primer between two parts
