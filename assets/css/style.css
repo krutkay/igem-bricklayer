@@ -21,3 +21,9 @@ body {
 .align-right { text-align: right; }
 
 .mTop100 { margin-top: 100px; }
+
+textarea.sequence {
+  width: 100%;
+  border: 1px solid gray;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+}

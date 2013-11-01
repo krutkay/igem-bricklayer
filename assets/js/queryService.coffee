@@ -20,7 +20,6 @@ Bricklayer.HomeView.afterRender = ->
             (e) ->
                 e.preventDefault()
                 Bricklayer.search url, $(searchId + " :text").val()
-Bricklayer.HomeView.render {}
 
 Bricklayer.BioBrick =
 class BioBrick

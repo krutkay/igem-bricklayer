@@ -40,4 +40,8 @@ ResultsView = new View '.content', '#templateSearchResults'
 Bricklayer.BinView =
 BinView = new View '.content', '#templateBrickBin'
 
+Bricklayer.PrimerView =
+PrimerView = new View '.content', '#templatePrimers'
+
 HeaderView.render {}
+HomeView.render {}
