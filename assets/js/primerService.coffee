@@ -128,6 +128,16 @@ displayPrimers = (primers) ->
     console.log "Displaying primers..."
     console.log primers
     for primer, i in primers
+        if i is 0
+            s = '<p>Regular Forward Primer: ' + primers[0] + '</p>'
+        else if i is (primers.length - 1)
+            s = '<p>Regular Reverse Complement Primer: ' + primers[i] + '</p>'
+        else
+            s = '<p>Linker Primer between parts ' + i + ' and ' + (i+1) + ': ' + primers[i] + '</p>'
+        console.log s
+        $(Bricklayer.SequenceEntryView.selector).append(s)
+
+    for primer, i in primers
         console.log i + ", " + primer
 
 # Add a blank sequence
