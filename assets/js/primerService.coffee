@@ -155,7 +155,7 @@ Bricklayer.PrimerView.afterRender = ->
 
 
 # temporarily skip the home page and go to the generate page. this is a reason for routes
-Bricklayer.PrimerView.render()
+# Bricklayer.PrimerView.render()
 
 # #######
 # Example of Primer between two parts
