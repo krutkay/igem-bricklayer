@@ -6,13 +6,13 @@ script#templatePrimers(type='text/x-handlebars-template')
         h1 Generate Primers
     .row
         span
-            | Enter a sequence or select a  BioBrick from the Brick Bin in the dropdown
+            | Enter the sequences that appear in your construct, in the order they appear in.
     .row#sequenceEntries
     .row.buttonrow
         //- WE'RE BRINGING CENTER BACK
         center
             .medium.primary.btn
-                input#addSequence(type='button', value='Add part to sequence')
+                input#addSequence(type='button', value='Add part to construct')
             .medium.secondary.btn
                 input#generatePrimers(type='button', value='Generate primers')
 
