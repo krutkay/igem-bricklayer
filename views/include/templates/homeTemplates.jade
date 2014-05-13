@@ -9,11 +9,11 @@ mixin searchForm(title, id, action)
 
 script#templateSearchFields(type='text/x-handlebars-template')
     .row
-        h1 bricklayer
+        h1  
     .row
         .six.columns.text-right
             img(src='images/bricklayerhome.jpg')
-        .six.columns
+        .six.columns.text-right
             h1  
             +searchForm("Text Search", "form-text-search", "#")
             +searchForm("1000 Parts Search", "form-thousand-search", "#")
