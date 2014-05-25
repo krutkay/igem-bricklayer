@@ -11,7 +11,7 @@ The [Windows installer of Git](http://git-scm.com/downloads) comes with a termin
 ##### Alternatives:
 * Install [Cygwin](http://www.cygwin.com/), another terminal like environment for windows.
 * Install [Ubuntu](http://www.ubuntu.com/download), a linux distribution. Linux distributions are very programmer friendly and access to the terminal should be straightforward. You can choose to install it alongside you current operating system. 
-* Install [Ubuntu] in a [VirtualBox](https://www.virtualbox.org/wiki/Downloads), a choice for users who prefer not to dual boot OS.
+* Install [Ubuntu](http://www.ubuntu.com/download) in a [VirtualBox](https://www.virtualbox.org/wiki/Downloads), a choice for users who prefer not to dual boot OS.
 * Get a [mac](http://www.apple.com/ca/macbook-air/).
 
 ### First Run
