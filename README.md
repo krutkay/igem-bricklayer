@@ -31,7 +31,7 @@ To start the server run the command
 Visit http://localhost:3000/ in your browser to see the app.
 See the `Makefile` to add more targets as you see fit.
 
-### Errors
+##### Errors:
 
 * If a "/usr/bin/env: node: No such file or directory" is encountered, try the command "ln -s /usr/bin/nodejs /usr/bin/node"
 
